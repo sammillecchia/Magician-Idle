@@ -1,0 +1,67 @@
+.cultivationSubMenuButton {
+  height: 10%;
+  width: 100%;
+  color: #eee;
+  margin-bottom: 20%;
+  user-select: none;
+  display: grid;
+  white-space: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+#currentCultivationMenu {
+  height: 100%;
+  width: 90%;
+  background-color: #333;
+  display: flex;
+  flex-direction: column-reverse;
+}
+#awakeningMenuButton {
+  background-color: #09e;
+}
+
+#element1MenuButton {
+  display: none;
+  background-color: #e0e; 
+}
+
+#trainingMenu {
+  display: flex;
+}
+
+#awakeningDisplay {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#awakeningBarFill {
+  background-color: #09e !important;
+}
+
+#cultivationSubMenu {
+  height: 100%;
+  width: 10%;
+  background-color: #333;
+  display: flex;
+  flex-direction: column-reverse;
+  border-right: 2px solid #222;
+}
+
+#statsDisplay {
+  position: absolute; 
+  top: 150px;
+  left: 200px; 
+  width: 400px;
+  height: 250px;
+  color: #eee;
+  background-color: #333;
+  border: 5px solid #222;
+  padding: 10px;
+  box-sizing: border-box;
+  z-index: 20; 
+  cursor: grab;
+}
