@@ -1,0 +1,1 @@
+//constant values for game state
