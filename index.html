@@ -21,12 +21,16 @@
     <div class="menuButton" id="explorationButton">Exploration</div>   
     <div class="menuButton" id="upgradeButton">Upgrades</div> 
 </div>
+<!-- 
+
+TODO: ADD THIS BACK
+
 
 <div class="moveableDisplay" id="statsDisplay">
   <div class="statsDisplayField" >MP: <span id="mpDisplay">0</span></div>
   <div class="statsDisplayField" >SP: <span id="spDisplay">0</span></div>
   <div class="statsDisplayField" >RANK: <span id="rankDisplay">0</span></div>
-</div>
+</div> -->
 
 <div class="mainBody" id="statsMenu">
   <p>stats</p>
@@ -67,48 +71,77 @@
 
   <div id="info-container">
     <div class="infoText">MP: <span id="mp">0</span></div>
-    <div class="infoText">GAIN: <span id="gain">2</span></div>
+    <div class="infoText">GAIN: <span id="gain">1</span></div>
   </div>
 
-  
+  <!-- ids: 
+  training
+  increase
+  intensify
+  duplicate
+  multiply -->
 
-  <div class="magicLayer" id="multiplicationLayer">
+  <!-- <div class="magicUpgrade" id="multiplyContainer">
     <div class="progress-container">
-      <div class="progress-fill" id="multiplicationBarFill"></div>
-      <div class="progress-text" id="multiplicationBarText"></div> 
+      <div class="progress-fill" id="multiplyFill"></div>
+      <div class="progress-text" id="multiplyText"></div> 
     </div>
 
-    <div id="multiplication" class="button">multiply</div>
-    <div id="multiplicationLevel" class="button"><span id="mlvl">1<span></div>
-    <div id="multiplicationCost" class="button">1</div>
+    <div id="multiply" class="button">multiply</div>
+    <div id="multiplyCostDisplay" class="button">Cost: <span class="multiplyCost">1<span></div>
+    <div id="multiplyLevel" class="button">Level: <span class="multiplylvl">ta<span></div>
   </div>
 
-  <div class="magicLayer" id="intensifyingLayer">
+  <div class="magicUpgrade" id="duplicateContainer">
     <div class="progress-container">
-      <div class="progress-fill" id="intensifyingBarFill"></div>
-      <div class="progress-text" id="intensifyingBarText"></div> 
+      <div class="progress-fill" id="duplicateFill"></div>
+      <div class="progress-text" id="duplicateText"></div> 
+    </div>
+
+    <div id="duplicate" class="button">duplicate</div>
+    <div id="duplicateCostDisplay" class="button">Cost: <span class="duplicateCost">1<span></div>
+    <div id="duplicateLevel" class="button">Level: <span class="duplicatelvl">ta<span></div>
+  </div>
+
+  <div class="magicUpgrade" id="intensifyContainer">
+    <div class="progress-container">
+      <div class="progress-fill" id="intensifyFill"></div>
+      <div class="progress-text" id="intensifyText"></div> 
     </div>
 
     <div id="intensify" class="button">intensify</div>
-    <div id="intensifyLevel" class="button"><span id="ilvl">1<span></div>
-    <div id="intensifyCost" class="button">1</div>
+    <div id="intensifyCostDisplay" class="button">Cost: <span class="intensifyCost">1<span></div>
+    <div id="intensifyLevel" class="button">Level: <span class="intensifylvl">ta<span></div>
+  </div> -->
+
+  <div class="magicUpgrade" id="increaseContainer">
+    <div class="progress-container">
+      <div class="progress-fill" id="increaseFill"></div>
+      <div class="progress-text" id="increaseText"></div> 
+    </div>
+
+    <div id="increase" class="button">increase</div>
+    <div id="increaseCostDisplay" class="button">Cost: <span class="increaseCost">1<span></div>
+    <div id="increaseLevel" class="button">Level: <span class="increaselvl">ta<span></div>
   </div>
 
-
-  <div class="magicLayer" id="trainingLayer">
+  <!-- id should be trainingContainer -->
+  <div class="magicUpgrade" id="trainingLayer"> 
     <div class="progress-container">
       <div class="progress-fill" id="trainingBarFill"></div>
       <div class="progress-text" id="trainingBarText"></div> 
     </div>
     
     <div id="train" class="button">train</div>
-    <div id="trainingLevel" class="button">Level: <span class="tlvl">ta<span></div>
+     <!-- unneeded? <div id="trainingLevel" class="button">Level: <span class="tlvl">ta<span></div> -->
     <div id="autoTrain" class="button">AutoTrain</div>
   </div>
 
+
+
 </div>
-<script src="js\utils\break_infinity.js\dist\break_infinity.js" type="module"></script>
-<script src="js\main.js" type="module"></script>
+<script src="js/utils/break_infinity.js/dist/break_infinity.js" type="module"></script>
+<script src="js/main.js" type="module"></script>
 
 </body>
 </html>

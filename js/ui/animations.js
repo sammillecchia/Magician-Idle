@@ -1,1 +1,0 @@
-//for css or js animations like the progress bar

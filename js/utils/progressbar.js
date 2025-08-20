@@ -1,4 +1,21 @@
-export default function updateProgressBar(timeInSeconds, barFill, textElement, doFunction, prog) {
+//getElementByIds
+
+//TODO: Add text functionality, showing time until timer completes
+//updates a progress bars width to match the progress
+export function updateProgressBar(progress, bar) {
+  //Idk about text rn as it should be time eg; seconds/minutes until timer is up
+  bar.style.width = `${progress}%`;
+
+}
+
+
+
+
+
+
+
+//unused?, s
+export function updateProgressBar2(timeInSeconds, barFill, textElement, doFunction, prog) {
     let progress = prog;
     
     //This works for now, probably should rewrite this later when I want it to work with minutes/hours!
