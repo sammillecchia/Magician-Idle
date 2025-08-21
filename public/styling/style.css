@@ -1,0 +1,133 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.mainBody {
+    background-color: #333;
+    width: 70vw;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#statsMenu, #cultvationMenu {
+  display:  none;
+}
+
+
+
+#cultivationMenuCenter {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+
+
+.magicUpgrade {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10vw;  
+}
+
+#info-container {
+    user-select: none;
+    margin-left: 10vw;
+    color: #eee;
+}
+
+.progress-container {
+  width: 30vw;
+  height: 3vh;
+  background-color: #eee;
+  position: relative; /* Needed for absolute positioning of children */
+}
+
+.progress-fill {
+  background-color: #4CAF50;
+  height: 100%;
+  width: 0%; /* Initial width */
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  color: #333;
+  width: 100%; /* Ensure it covers the container width for centering */
+  text-align: center; /* Center the text within its own bounds */
+  pointer-events: none; /* Allow clicks to pass through to the bar if needed */
+}
+
+.button {
+    user-select: none;
+    display: grid;
+    white-space: nowrap;
+    place-items: center;
+    margin-left: 1vw;
+    background-color: #444;
+    color: #eee;
+    width: 5vw;
+    height: 3vh;
+}
+
+#menuButtons {
+  width: 70vw;
+  height: 5vh;
+  display: flex;
+  flex-direction: row;
+}
+.menuButton {
+  margin-left: 1vw;
+  user-select: none;
+  display: grid;
+  place-items: center;
+  width: 10%;
+  height: 100%;
+  background-color: #ccc;
+  color: #444;
+}
+
+#cultivationMenuButton {
+  user-select: none;
+  place-items: center;
+  /* display: none; */
+}
+
+
+
+.info {
+  position: absolute;
+
+  left: 100px;
+  background-color: #4CAF50;
+  height: 25vh;
+  width: 10vw;
+  z-index: 10;
+}
+
+.currentCultivation {
+  display: none;
+}
+
+#intensifyingLayer {
+  display: none;
+}
+
+#multiplicationLayer {
+  display: none;
+}
