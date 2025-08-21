@@ -19,6 +19,16 @@ export const initialGameState = {
     intensifyRunning: false,
     intensifyStart: null,
     
+    duplicateLength: 1000, //ms placeholder
+    duplicateUnlocked: false,
+    duplicateRunning: false,
+    duplicateStart: null,
+
+    multiplyLength: 1000, //ms placeholder
+    multiplyUnlocked: false,
+    multiplyRunning: false,
+    multiplyStart: null
+    
 }
 
 export const initialPlayerData = {
@@ -32,5 +42,13 @@ export const initialPlayerData = {
 
     intensifyLevel: 0,
     intensifyCost: 1,
-    intensifyLength: 1000
+    intensifyLength: 1000,
+
+    duplicateLevel: 0,
+    duplicateCost: 1,
+    duplicateLength: 1000,
+
+    multiplyLevel: 0,
+    multiplyCost: 1,
+    multiplyLength: 1000
 }

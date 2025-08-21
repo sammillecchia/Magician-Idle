@@ -28,7 +28,16 @@ export const gameState = {
     intensifyUnlocked: false,
     intensifyRunning: false,
     intensifyStart: null,
+
+    duplicateLength: 1000, //ms placeholder
+    duplicateUnlocked: false,
+    duplicateRunning: false,
+    duplicateStart: null,
     
+    multiplyLength: 1000, //ms placeholder
+    multiplyUnlocked: false,
+    multiplyRunning: false,
+    multiplyStart: null
 }
 
 //sets event listeners, for one-time initalization logic
@@ -107,7 +116,21 @@ function trainingLoop() {
         }
     }
 
+    //logic for duplicate
+    if (gameState.duplicateRunning) {
+        if (loopDate - gameState.duplicateLength >= gameState.duplicateStart) {
+            training.duplicateComplete();
+            gameState.duplicateRunning = false;
+        }
+    }
 
+    //logic for duplicate
+    if (gameState.multiplyRunning) {
+        if (loopDate - gameState.multiplyLength >= gameState.multiplyStart) {
+            training.multiplyComplete();
+            gameState.multiplyRunning = false;
+        }
+    }
 
 }
 

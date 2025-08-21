@@ -12,6 +12,11 @@ const increaseLevelDisplay = document.getElementById('increaseLevel')
 const intensifyCostDisplay = document.getElementById('intensifyCostDisplay')
 const intensifyLevelDisplay = document.getElementById('intensifyLevel')
 
+const duplicateCostDisplay = document.getElementById('duplicateCostDisplay')
+const duplicateLevelDisplay = document.getElementById('duplicateLevel')
+
+const multiplyCostDisplay = document.getElementById('multiplyCostDisplay')
+const multiplyLevelDisplay = document.getElementById('multiplyLevel')
 
 
 //Updates all text with information, since this is called every gameLoop it needs checks
@@ -19,7 +24,7 @@ const intensifyLevelDisplay = document.getElementById('intensifyLevel')
 export function updateText() {
     // console.log('updateText');
     //Updates MP display
-    mpText.innerText = playerData.getMagicPower();
+    mpText.innerText = Math.floor(playerData.getMagicPower());
     gainText.innerText = playerData.playerData.gain;
     //Updates Gain Display (per training) TODO
     increaseLevelDisplay.innerText = playerData.playerData.increaseLevel;
@@ -27,6 +32,12 @@ export function updateText() {
 
     intensifyLevelDisplay.innerText = playerData.playerData.intensifyLevel;
     intensifyCostDisplay.innerText = playerData.playerData.intensifyCost;
+
+    duplicateLevelDisplay.innerText = playerData.playerData.duplicateLevel;
+    duplicateCostDisplay.innerText = playerData.playerData.duplicateCost;
+
+    multiplyLevelDisplay.innerText = playerData.playerData.multiplyLevel;
+    multiplyCostDisplay.innerText = playerData.playerData.multiplyCost;
 
 
     if (gameState.trainingAuto) {

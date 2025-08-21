@@ -13,7 +13,15 @@ export const playerData = {
 
     intensifyLevel: 0,
     intensifyCost: 1,
-    intensifyLength: 1000
+    intensifyLength: 1000,
+
+    duplicateLevel: 0,
+    duplicateCost: 1,
+    duplicateLength: 1000,
+
+    multiplyLevel: 0,
+    multiplyCost: 1,
+    multiplyLength: 1000
 }
 
 //returns entire playerData object
@@ -57,7 +65,8 @@ export function increaseMagicPower() {
 
 //IMPORTANT, CALCULATES HOW MP YOU GET PER TRAINING
 function calculateGain() {
-    playerData.gain = 1 + playerData.increaseLevel + playerData.intensifyLevel ** 2;
+    playerData.gain = 1 + playerData.increaseLevel + playerData.intensifyLevel ** 2 + 
+        playerData.duplicateLevel * 3 + playerData.multiplyLevel * 5; //placeholders
 }
 
 
@@ -90,7 +99,27 @@ export function incrementIntensifyCost() {
     console.log(`increaseCost: ${playerData.intensifyCost}`);
 }
 
+export function incrementDuplicateLevel() {
+    playerData.duplicateLevel++;
+    console.log(`duplicateLevel: ${playerData.duplicateLevel}`);
+    calculateGain();
+}
 
+export function incrementDuplicateCost() {
+    playerData.duplicateCost++; //should be more complex
+    console.log(`increaseCost: ${playerData.duplicateCost}`);
+}
+
+export function incrementMultiplyLevel() {
+    playerData.multiplyLevel++;
+    console.log(`multiplyLevel: ${playerData.multiplyLevel}`);
+    calculateGain();
+}
+
+export function incrementMultiplyCost() {
+    playerData.multiplyCost++; //should be more complex
+    console.log(`increaseCost: ${playerData.multiplyCost}`);
+}
 
 
 //TBA

@@ -14,6 +14,12 @@ const increaseProgressBar = document.getElementById('increaseFill');
 const intensifyButton = document.getElementById('intensify');
 const intensifyProgressBar = document.getElementById('intensifyFill');
 
+const duplicateButton = document.getElementById('duplicate');
+const duplicateProgressBar = document.getElementById('duplicateFill');
+
+const multiplyButton = document.getElementById('multiply');
+const multiplyProgressBar = document.getElementById('multiplyFill');
+
 export function setupEventListeners() {
     //maybe the event listeners should be in an object?
     trainingButton.addEventListener('click', training);
@@ -22,6 +28,10 @@ export function setupEventListeners() {
     increaseButton.addEventListener('click', increase);
 
     intensifyButton.addEventListener('click', intensify);
+
+    duplicateButton.addEventListener('click', duplicate);
+
+    multiplyButton.addEventListener('click', multiply);
 }
 
 function autoTrain() {
@@ -56,6 +66,19 @@ export function updateProgressBars() {
         const intensifyProgress = Math.min(100, Math.round((Date.now() - gameState.intensifyStart) / (intensifyFinished - gameState.intensifyStart)* 100));
         updateProgressBar(intensifyProgress, intensifyProgressBar);
     }
+
+    if (gameState.duplicateRunning) {
+        let duplicateFinished = gameState.duplicateStart + gameState.duplicateLength;
+        const duplicateProgress = Math.min(100, Math.round((Date.now() - gameState.duplicateStart) / (duplicateFinished - gameState.duplicateStart)* 100));
+        updateProgressBar(duplicateProgress, duplicateProgressBar);
+    }
+
+    if (gameState.multiplyRunning) {
+        let multiplyFinished = gameState.multiplyStart + gameState.multiplyLength;
+        const multiplyProgress = Math.min(100, Math.round((Date.now() - gameState.multiplyStart) / (multiplyFinished - gameState.multiplyStart)* 100));
+        updateProgressBar(multiplyProgress, multiplyProgressBar);
+    }
+
 }
 
 
@@ -113,6 +136,54 @@ export function intensifyComplete() {
     playerData.incrementIntensifyLevel();   
     playerData.incrementIntensifyCost();
 }
+
+export function duplicate() {
+    if (!gameState.duplicateRunning) {
+        console.log('duplicate')
+        if (playerData.playerData.magicPower >= playerData.playerData.duplicateCost) {
+            playerData.decreaseMagicPower(playerData.playerData.duplicateCost); //stupid
+            gameState.duplicateRunning = true;
+            gameState.duplicateStart = Date.now();
+        } else {
+            //cant upgrade duplicate
+            console.log('cant duplicate')
+        }
+    }
+}
+
+
+export function duplicateComplete() {
+    console.log("duplicate complete");
+    updateProgressBar(0, duplicateProgressBar);
+    playerData.incrementDuplicateLevel();   
+    playerData.incrementDuplicateCost();
+}
+
+export function multiply() {
+    if (!gameState.multiplyRunning) {
+        console.log('multiply')
+        if (playerData.playerData.magicPower >= playerData.playerData.multiplyCost) {
+            playerData.decreaseMagicPower(playerData.playerData.multiplyCost); //stupid
+            gameState.multiplyRunning = true;
+            gameState.multiplyStart = Date.now();
+        } else {
+            //cant upgrade multiply
+            console.log('cant multiply')
+        }
+    }
+}
+
+
+export function multiplyComplete() {
+    console.log("multiply complete");
+    updateProgressBar(0, multiplyProgressBar);
+    playerData.incrementMultiplyLevel();   
+    playerData.incrementMultiplyCost();
+}
+
+
+
+
 
 //THERE IS MOST DEFINITELY A BETTER WAY TO DO THIS
 export function checkUpgradeMilestones() {
