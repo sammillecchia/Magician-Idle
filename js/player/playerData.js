@@ -4,11 +4,16 @@
 //Object for handling players data or stats
 export const playerData = {
     magicPower: new Decimal(),
+    trainingLength: 1000,
     gain: 1,
-    
+
     increaseLevel: 0,
     increaseCost: 1,
-    increaseLength: 1000
+    increaseLength: 1000,
+
+    intensifyLevel: 0,
+    intensifyCost: 1,
+    intensifyLength: 1000
 }
 
 //returns entire playerData object
@@ -47,9 +52,16 @@ export function increaseMagicPower() {
     // //console.log(playerData.magicPower.toString());
 }
 
+
+
+
+//IMPORTANT, CALCULATES HOW MP YOU GET PER TRAINING
 function calculateGain() {
-    playerData.gain = 1 + playerData.increaseLevel;
+    playerData.gain = 1 + playerData.increaseLevel + playerData.intensifyLevel ** 2;
 }
+
+
+
 
 export function decreaseMagicPower(value) {
     playerData.magicPower = playerData.magicPower.minus(value);
@@ -59,12 +71,25 @@ export function decreaseMagicPower(value) {
 export function incrementIncreaseLevel() {
     playerData.increaseLevel++;
     console.log(`increaseLevel: ${playerData.increaseLevel}`);
+    calculateGain();
 }
 
 export function incrementIncreaseCost() {
     playerData.increaseCost++; //should be more complex
     console.log(`increaseCost: ${playerData.increaseCost}`);
 }
+
+export function incrementIntensifyLevel() {
+    playerData.intensifyLevel++;
+    console.log(`intensifyLevel: ${playerData.intensifyLevel}`);
+    calculateGain();
+}
+
+export function incrementIntensifyCost() {
+    playerData.intensifyCost++; //should be more complex
+    console.log(`increaseCost: ${playerData.intensifyCost}`);
+}
+
 
 
 

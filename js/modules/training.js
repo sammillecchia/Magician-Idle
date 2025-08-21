@@ -9,7 +9,10 @@ const trainingProgressBar = document.getElementById('trainingBarFill');
 const autoTrainButton = document.getElementById('autoTrain');
 
 const increaseButton = document.getElementById('increase');
-const increaseProgressBar = document.getElementById('increaseFill'); 
+const increaseProgressBar = document.getElementById('increaseFill');
+
+const intensifyButton = document.getElementById('intensify');
+const intensifyProgressBar = document.getElementById('intensifyFill');
 
 export function setupEventListeners() {
     //maybe the event listeners should be in an object?
@@ -17,6 +20,8 @@ export function setupEventListeners() {
     autoTrainButton.addEventListener('click', autoTrain);
     
     increaseButton.addEventListener('click', increase);
+
+    intensifyButton.addEventListener('click', intensify);
 }
 
 function autoTrain() {
@@ -26,6 +31,9 @@ function autoTrain() {
     } else if (!gameState.trainingAuto) {
         console.log("gamestate trainingauto true");
         gameState.trainingAuto = true;
+        if (!gameState.trainingRunning) {
+            training();
+        }
     }
 }
 
@@ -42,10 +50,17 @@ export function updateProgressBars() {
         const increaseProgress = Math.min(100, Math.round((Date.now() - gameState.increaseStart) / (increaseFinished - gameState.increaseStart)* 100));
         updateProgressBar(increaseProgress, increaseProgressBar);
     }
+
+    if (gameState.intensifyRunning) {
+        let intensifyFinished = gameState.intensifyStart + gameState.intensifyLength;
+        const intensifyProgress = Math.min(100, Math.round((Date.now() - gameState.intensifyStart) / (intensifyFinished - gameState.intensifyStart)* 100));
+        updateProgressBar(intensifyProgress, intensifyProgressBar);
+    }
 }
 
 
 export function training() {
+    
     gameState.trainingRunning = true;
     gameState.trainingStart = Date.now();
 }
@@ -58,14 +73,16 @@ export function trainingComplete() {
 }
 
 export function increase() {
-    console.log('increase')
-    if (playerData.playerData.magicPower >= playerData.playerData.increaseCost) {
-        playerData.decreaseMagicPower(playerData.playerData.increaseCost); //stupid
-        gameState.increaseRunning = true;
-        gameState.increaseStart = Date.now();
-    } else {
-        //cant upgrade increase
-        console.log('cant increase')
+    if (!gameState.increaseRunning) {
+        console.log('increase')
+        if (playerData.playerData.magicPower >= playerData.playerData.increaseCost) {
+            playerData.decreaseMagicPower(playerData.playerData.increaseCost); //stupid
+            gameState.increaseRunning = true;
+            gameState.increaseStart = Date.now();
+        } else {
+            //cant upgrade increase
+            console.log('cant increase')
+        }
     }
 }
 
@@ -74,6 +91,27 @@ export function increaseComplete() {
     updateProgressBar(0, increaseProgressBar);
     playerData.incrementIncreaseLevel();
     playerData.incrementIncreaseCost();
+}
+
+export function intensify() {
+    if (!gameState.intensifyRunning) {
+        console.log('intensify')
+        if (playerData.playerData.magicPower >= playerData.playerData.intensifyCost) {
+            playerData.decreaseMagicPower(playerData.playerData.intensifyCost); //stupid
+            gameState.intensifyRunning = true;
+            gameState.intensifyStart = Date.now();
+        } else {
+            //cant upgrade intensify
+            console.log('cant intensify')
+        }
+    }
+}
+
+export function intensifyComplete() {
+    console.log("intensify complete");
+    updateProgressBar(0, intensifyProgressBar);
+    playerData.incrementIntensifyLevel();   
+    playerData.incrementIntensifyCost();
 }
 
 //THERE IS MOST DEFINITELY A BETTER WAY TO DO THIS

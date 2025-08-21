@@ -1,16 +1,11 @@
 import * as training from "../modules/training.js";
 import * as playerData from "../player/playerData.js";
 import { loadGame, saveGame } from "./saveload.js";
+import { updateText } from "../utils/updateText.js";
 
 let loaded = false;
 
-//TODO: MOVE TO ANOTHER CLASS FOR TEXT UPDATES
-let mpText = document.getElementById('mp');
-const autoTrainButton = document.getElementById('autoTrain');
-const increaseCostDisplay = document.getElementById('increaseCostDisplay')
-const increaseLevelDisplay = document.getElementById('increaseLevel')
-
-//this is dumb
+//this is dumb idk
 let lastUpdateTime = Date.now();
 let lastSaveTime = Date.now();
 let loopDate = Date.now();
@@ -23,11 +18,16 @@ export const gameState = {
     trainingRunning: false, //Running = Boolean
     trainingAuto: false, //Looping = Boolean
     trainingStart: null,     //Start = Date
-
-    increaseUnlocked: false,
+    
     increaseLength: 1000, //ms placeholder
+    increaseUnlocked: false,
     increaseRunning: false,
     increaseStart: null,
+
+    intensifyLength: 1000, //ms placeholder
+    intensifyUnlocked: false,
+    intensifyRunning: false,
+    intensifyStart: null,
     
 }
 
@@ -98,7 +98,15 @@ function trainingLoop() {
         }
     }
 
-    //
+
+    //logic for intensify
+    if (gameState.intensifyRunning) {
+        if (loopDate - gameState.intensifyLength >= gameState.intensifyStart) {
+            training.intensifyComplete();
+            gameState.intensifyRunning = false;
+        }
+    }
+
 
 
 }
@@ -112,27 +120,9 @@ function cultivationLoop() {
 function animationLoop() {
     training.updateProgressBars();
     
-    updateText()
+    updateText();
 }
 
-//Updates all text with information, since this is called every gameLoop it needs checks
-//for whether the things being updated are actually visible
-function updateText() {
-    // console.log('updateText');
-    //Updates MP display
-    mpText.innerText = playerData.getMagicPower();
-    //Updates Gain Display (per training) TODO
-    increaseLevelDisplay.innerText = playerData.playerData.increaseLevel;
-    increaseCostDisplay.innerText = playerData.playerData.increaseCost;
-
-
-
-    if (gameState.trainingAuto) {
-        autoTrainButton.style.color = 'green';
-    } else {
-        autoTrainButton.style.color = '#eee';
-    }
-}
 
 
 
