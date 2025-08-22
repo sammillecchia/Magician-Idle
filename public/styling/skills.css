@@ -30,6 +30,11 @@
   display: flex;
 }
 
+#explorationMenu {
+  display: none;
+}
+
+
 #awakeningDisplay {
     height: 100%;
     width: 100%;

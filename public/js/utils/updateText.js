@@ -24,25 +24,28 @@ const multiplyLevelDisplay = document.getElementById('multiplyLevel')
 export function updateText() {
     // console.log('updateText');
     //Updates MP display
-    mpText.innerText = Math.floor(playerData.getMagicPower());
-    gainText.innerText = playerData.playerData.gain;
-    //Updates Gain Display (per training) TODO
-    increaseLevelDisplay.innerText = playerData.playerData.increaseLevel;
-    increaseCostDisplay.innerText = playerData.playerData.increaseCost;
+    
+    if (gameState.trainingMenu) {
+        mpText.innerText = Math.floor(playerData.getMagicPower());
+        gainText.innerText = playerData.playerData.gain;
 
-    intensifyLevelDisplay.innerText = playerData.playerData.intensifyLevel;
-    intensifyCostDisplay.innerText = playerData.playerData.intensifyCost;
+        increaseLevelDisplay.innerText = playerData.playerData.increaseLevel;
+        increaseCostDisplay.innerText = playerData.playerData.increaseCost;
 
-    duplicateLevelDisplay.innerText = playerData.playerData.duplicateLevel;
-    duplicateCostDisplay.innerText = playerData.playerData.duplicateCost;
+        intensifyLevelDisplay.innerText = playerData.playerData.intensifyLevel;
+        intensifyCostDisplay.innerText = playerData.playerData.intensifyCost;
 
-    multiplyLevelDisplay.innerText = playerData.playerData.multiplyLevel;
-    multiplyCostDisplay.innerText = playerData.playerData.multiplyCost;
+        duplicateLevelDisplay.innerText = playerData.playerData.duplicateLevel;
+        duplicateCostDisplay.innerText = playerData.playerData.duplicateCost;
+
+        multiplyLevelDisplay.innerText = playerData.playerData.multiplyLevel;
+        multiplyCostDisplay.innerText = playerData.playerData.multiplyCost;
 
 
-    if (gameState.trainingAuto) {
-        autoTrainButton.style.color = 'green';
-    } else {
-        autoTrainButton.style.color = '#eee';
+        if (gameState.trainingAuto) {
+            autoTrainButton.style.color = 'green';
+        } else {
+            autoTrainButton.style.color = '#eee';
+        }
     }
 }

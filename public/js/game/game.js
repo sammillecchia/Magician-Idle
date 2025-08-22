@@ -2,6 +2,7 @@ import * as training from "../modules/training.js";
 import * as playerData from "../player/playerData.js";
 import { loadGame, saveGame } from "./saveload.js";
 import { updateText } from "../utils/updateText.js";
+import { setupMenuButtons } from "../ui/events.js";
 
 let loaded = false;
 
@@ -13,6 +14,11 @@ let loopDate = Date.now();
 //object for handling everything in the game state
 export const gameState = {
     lastTimePlayed: null,
+
+    trainingMenu: true,
+    cultivationMenu: false,
+    statsMenu: false,
+    explorationMenu: false, 
     
     trainingLength: 1000,   //Time = int (ms), should be in playerData?
     trainingRunning: false, //Running = Boolean
@@ -44,6 +50,7 @@ export const gameState = {
 //things were breaking when this was in main.js uuh maybe fix that idk
 export function startGame() {
     training.setupEventListeners();
+    setupMenuButtons();
 
     requestAnimationFrame(gameLoop);
 }
