@@ -21,31 +21,31 @@ const multiplyLevelDisplay = document.getElementById('multiplyLevel')
 
 //Updates all text with information, since this is called every gameLoop it needs checks
 //for whether the things being updated are actually visible
-export function updateText() {
+export function updateTrainingText() {
     // console.log('updateText');
     //Updates MP display
     
-    if (gameState.trainingMenu) {
-        mpText.innerText = Math.floor(playerData.getMagicPower());
-        gainText.innerText = playerData.playerData.gain;
+    
+    mpText.innerText = Math.floor(playerData.getMagicPower());
+    gainText.innerText = playerData.playerData.gain;
 
-        increaseLevelDisplay.innerText = playerData.playerData.increaseLevel;
-        increaseCostDisplay.innerText = playerData.playerData.increaseCost;
+    increaseLevelDisplay.innerText = playerData.playerData.increaseLevel;
+    increaseCostDisplay.innerText = playerData.playerData.increaseCost;
 
-        intensifyLevelDisplay.innerText = playerData.playerData.intensifyLevel;
-        intensifyCostDisplay.innerText = playerData.playerData.intensifyCost;
+    intensifyLevelDisplay.innerText = playerData.playerData.intensifyLevel;
+    intensifyCostDisplay.innerText = playerData.playerData.intensifyCost;
 
-        duplicateLevelDisplay.innerText = playerData.playerData.duplicateLevel;
-        duplicateCostDisplay.innerText = playerData.playerData.duplicateCost;
+    duplicateLevelDisplay.innerText = playerData.playerData.duplicateLevel;
+    duplicateCostDisplay.innerText = playerData.playerData.duplicateCost;
 
-        multiplyLevelDisplay.innerText = playerData.playerData.multiplyLevel;
-        multiplyCostDisplay.innerText = playerData.playerData.multiplyCost;
+    multiplyLevelDisplay.innerText = playerData.playerData.multiplyLevel;
+    multiplyCostDisplay.innerText = playerData.playerData.multiplyCost;
 
 
-        if (gameState.trainingAuto) {
-            autoTrainButton.style.color = 'green';
-        } else {
-            autoTrainButton.style.color = '#eee';
-        }
+    if (gameState.trainingAuto) {
+        autoTrainButton.style.color = 'green';
+    } else {
+        autoTrainButton.style.color = '#eee';
     }
+    
 }

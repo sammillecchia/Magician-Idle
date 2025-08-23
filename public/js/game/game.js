@@ -1,13 +1,12 @@
 import * as training from "../modules/training.js";
+import * as cultivation from "../modules/cultivation.js";
 import * as playerData from "../player/playerData.js";
 import { loadGame, saveGame } from "./saveload.js";
-import { updateText } from "../utils/updateText.js";
+import { updateTrainingText } from "../utils/updateText.js";
 import { setupMenuButtons } from "../ui/events.js";
 
 let loaded = false;
 
-//this is dumb idk
-let lastUpdateTime = Date.now();
 let lastSaveTime = Date.now();
 let loopDate = Date.now();
 
@@ -43,7 +42,13 @@ export const gameState = {
     multiplyLength: 1000, //ms placeholder
     multiplyUnlocked: false,
     multiplyRunning: false,
-    multiplyStart: null
+    multiplyStart: null,
+
+    awakeningLength: 1000, //ms placeholder
+    awakeningUnlocked: false,
+    awakeningRunning: false,
+    awakeningStart: null
+    
 }
 
 //sets event listeners, for one-time initalization logic
@@ -65,6 +70,9 @@ function gameLoop() {
 
     //handles updates for training
     trainingLoop();
+
+    //handles updates for cultivation
+    cultivationLoop();
 
     //updates animations, progress bars, based on player data
     animationLoop();
@@ -142,7 +150,12 @@ function trainingLoop() {
 }
 
 function cultivationLoop() {
-
+    if (gameState.awakeningRunning) {
+       if (loopDate - gameState.awakeningLength >= gameState.awakeningStart) {
+            cultivation.awakeningComplete();
+            gameState.awakeningRunning = false;
+        } 
+    }
 }
 
 
@@ -150,7 +163,9 @@ function cultivationLoop() {
 function animationLoop() {
     training.updateProgressBars();
     
-    updateText();
+    if (gameState.trainingMenu) {
+        updateTrainingText();
+    }
 }
 
 

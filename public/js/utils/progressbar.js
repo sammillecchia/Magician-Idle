@@ -8,6 +8,10 @@ export function updateProgressBar(progress, bar) {
 
 }
 
+export function updateProgressCircle(progress, circle) {
+  circle.style.width = `${progress}%`;
+  circle.style.height = `${progress}%`;
+}
 
 
 

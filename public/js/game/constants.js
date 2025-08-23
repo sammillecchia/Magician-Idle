@@ -27,7 +27,12 @@ export const initialGameState = {
     multiplyLength: 1000, //ms placeholder
     multiplyUnlocked: false,
     multiplyRunning: false,
-    multiplyStart: null
+    multiplyStart: null,
+
+    awakeningLength: 1000, //ms placeholder
+    awakeningUnlocked: false,
+    awakeningRunning: false,
+    awakeningStart: null
     
 }
 
