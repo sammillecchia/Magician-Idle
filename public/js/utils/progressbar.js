@@ -8,6 +8,8 @@ export function updateProgressBar(progress, bar) {
 
 }
 
+
+//updates a given circles width and height to match the progress
 export function updateProgressCircle(progress, circle) {
   if (circle) {
     // console.log(progress);
