@@ -8,7 +8,7 @@
 // import { training } from './modules/training.js';
 
 
-//import { loadGame } from './game/saveload.js';
+// import { loadGame } from './game/saveload.js';
 import { startGame } from './game/game.js';
 
 document.addEventListener('DOMContentLoaded', function() {

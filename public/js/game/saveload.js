@@ -11,6 +11,7 @@ export function saveGame() {
     localStorage.setItem('playerData', JSON.stringify(playerData))
 }
 
+
 //loads data from localstorage, mainly gameStata and playerData
 export function loadGame() {
     
@@ -48,6 +49,8 @@ export function loadGame() {
 }
 
 export function resetGame() {
+    localStorage.clear();
+
     //gameState
     Object.assign(gameState, initialGameState);
 

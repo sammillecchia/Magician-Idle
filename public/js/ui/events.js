@@ -1,6 +1,6 @@
 //manges or setups for event listeners
 import { resetGame } from "../game/saveload.js";
-import { gameState } from "../game/game.js";
+import { menus } from "../game/menus.js";
 
 const resetButton = document.getElementById('resetButton');
 const trainingMenuButton = document.getElementById('trainingMenuButton');
@@ -21,24 +21,19 @@ export function setupMenuButtons() {
     explorationMenuButton.addEventListener('click', displayExplorationMenu);
 }
 
-function setTrainingMenu(menuName) {
-    
-    trainingMenu.style.display = 'none';
-    statsMenu.style.display = 'none';
-    explorationMenu.style.display = 'none';
-    cultivationMenu.style.display = 'none';
-
+function setMenu(menuName) {
     
 
-    if (gameState.hasOwnProperty(menuName)) {
-        const activeMenuElement = document.getElementById(menuName);
-        gameState.trainingMenu = false;
-        gameState.cultivationMenu = false;
-        gameState.statsMenu = false;
-        gameState.explorationMenu = false;
-        gameState[menuName] = true;
-        activeMenuElement.style.display = 'flex';
+
+    menus.currentMenu.style.display = 'none'
+    if (menus.allMenus[menuName]) {  
+        menus.currentMenu = menus.allMenus[menuName];  
+    } else {
+        console.log('menu does not exist');
     }
+    menus.currentMenu.style.display = 'flex'
+
+    
     
     
 
@@ -48,7 +43,7 @@ function setTrainingMenu(menuName) {
 export function displayTrainingMenu() {
     console.log("displayTrainingMenu");
     //display logic
-    setTrainingMenu('trainingMenu');
+    setMenu('training');
 
     //gamestate logic for animations
 }
@@ -57,7 +52,7 @@ export function displayTrainingMenu() {
 export function displayCultivationMenu() {
     console.log("displayCultivationMenu");
     //display logic
-    setTrainingMenu('cultivationMenu');
+    setMenu('cultivation');
 
     //gamestate logic for animations
 }
@@ -66,7 +61,7 @@ export function displayCultivationMenu() {
 export function displayStatsMenu() {
     console.log("displayStatsMenu");
     //display logic
-    setTrainingMenu('statsMenu');
+    setMenu('stats');
 
     //gamestate logic for animations
 }
@@ -75,7 +70,7 @@ export function displayStatsMenu() {
 export function displayExplorationMenu() {
     console.log("displayExplorationMenu");
     //display logic
-    setTrainingMenu('explorationMenu');
+    setMenu('exploration');
 
     //gamestate logic for animations
 }

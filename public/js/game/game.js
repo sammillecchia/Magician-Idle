@@ -1,4 +1,5 @@
 import * as training from "../modules/training.js";
+import * as cultivation from "../modules/cultivation.js";
 import * as playerData from "../player/playerData.js";
 import { loadGame, saveGame } from "./saveload.js";
 import { updateText } from "../utils/updateText.js";
@@ -14,11 +15,6 @@ let loopDate = Date.now();
 //object for handling everything in the game state
 export const gameState = {
     lastTimePlayed: null,
-
-    trainingMenu: true,
-    cultivationMenu: false,
-    statsMenu: false,
-    explorationMenu: false, 
     
     trainingLength: 1000,   //Time = int (ms), should be in playerData?
     trainingRunning: false, //Running = Boolean
@@ -43,13 +39,19 @@ export const gameState = {
     multiplyLength: 1000, //ms placeholder
     multiplyUnlocked: false,
     multiplyRunning: false,
-    multiplyStart: null
+    multiplyStart: null,
+
+    awakeningLength: 1000, //ms placeholder
+    awakeningUnlocked: false,
+    awakeningRunning: false,
+    awakeningStart: null
 }
 
 //sets event listeners, for one-time initalization logic
 //things were breaking when this was in main.js uuh maybe fix that idk
 export function startGame() {
     training.setupEventListeners();
+    cultivation.setupEventListeners();
     setupMenuButtons();
 
     requestAnimationFrame(gameLoop);
@@ -62,9 +64,11 @@ function gameLoop() {
     //Saves current game data
     saveLoop();
 
-
     //handles updates for training
     trainingLoop();
+
+    //handles updates for cultivation
+    cultivationLoop();
 
     //updates animations, progress bars, based on player data
     animationLoop();
@@ -142,14 +146,20 @@ function trainingLoop() {
 }
 
 function cultivationLoop() {
-
+    if (gameState.awakeningRunning) {
+       if (loopDate - gameState.awakeningLength >= gameState.awakeningStart) {
+            cultivation.awakeningComplete();
+            gameState.awakeningRunning = false;
+        } 
+    }
 }
 
 
 
 function animationLoop() {
     training.updateProgressBars();
-    
+    cultivation.updateProgressCircles();
+
     updateText();
 }
 

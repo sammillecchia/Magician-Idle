@@ -8,6 +8,15 @@ export function updateProgressBar(progress, bar) {
 
 }
 
+export function updateProgressCircle(progress, circle) {
+  if (circle) {
+    // console.log(progress);
+  circle.style.width = `${progress}%`;
+  circle.style.height = `${progress}%`;
+  } else {
+    console.log('no circle')
+  }
+}
 
 
 

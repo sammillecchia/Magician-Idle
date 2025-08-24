@@ -34,20 +34,16 @@
   display: none;
 }
 
-
-#awakeningDisplay {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#awakeningBarFill {
-  background-color: #09e !important;
-}
-
 #cultivationSubMenu {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#cultivationSubMenuButtons {
   height: 100%;
   width: 10%;
   background-color: #333;

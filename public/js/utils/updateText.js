@@ -1,5 +1,6 @@
 import * as playerData from "../player/playerData.js";
 import { gameState } from "../game/game.js";
+import { menus } from "../game/menus.js";
 
 const mpText = document.getElementById('mp');
 const gainText = document.getElementById('gain');
@@ -25,7 +26,7 @@ export function updateText() {
     // console.log('updateText');
     //Updates MP display
     
-    if (gameState.trainingMenu) {
+    if (menus.currentMenu === menus.allMenus.training) {
         mpText.innerText = Math.floor(playerData.getMagicPower());
         gainText.innerText = playerData.playerData.gain;
 
