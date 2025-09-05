@@ -4,8 +4,8 @@ import * as playerData from "../player/playerData.js";
 import { loadGame, saveGame } from "./saveload.js";
 import { updateText } from "../utils/updateText.js";
 import { setupMenuButtons } from "../ui/events.js";
+import { offlineSetup } from "./offlineProgress.js";
 
-let loaded = false;
 
 //this is dumb idk
 let lastUpdateTime = Date.now();
@@ -14,7 +14,7 @@ let loopDate = Date.now();
 
 //object for handling everything in the game state
 export const gameState = {
-    lastTimePlayed: null,
+    lastTimePlayed: null, 
     
     trainingLength: 1000,   //Time = int (ms), should be in playerData?
     trainingRunning: false, //Running = Boolean
@@ -52,8 +52,8 @@ export const gameState = {
 export function startGame() {
     training.setupEventListeners();
     cultivation.setupEventListeners();
+    loadGame();
     setupMenuButtons();
-
     requestAnimationFrame(gameLoop);
 }
 
@@ -78,10 +78,6 @@ function gameLoop() {
 }
 
 function saveLoop() {
-    if (!loaded) {
-        loadGame();
-        loaded = true;
-    }
     if (loopDate - 10000 >= lastSaveTime) {
         saveGame();
         lastSaveTime = Date.now();

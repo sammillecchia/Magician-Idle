@@ -1,3 +1,4 @@
+"use strict"
 import * as playerData from "../player/playerData.js";
 import { gameState } from "../game/game.js";
 import { menus } from "../game/menus.js";
@@ -27,20 +28,20 @@ export function updateText() {
     //Updates MP display
     
     if (menus.currentMenu === menus.allMenus.training) {
-        mpText.innerText = Math.floor(playerData.getMagicPower());
-        gainText.innerText = playerData.playerData.gain;
+        mpText.textContent = Math.floor(playerData.getMagicPower());
+        gainText.textContent = playerData.playerData.gain;
 
-        increaseLevelDisplay.innerText = playerData.playerData.increaseLevel;
-        increaseCostDisplay.innerText = playerData.playerData.increaseCost;
+        increaseLevelDisplay.textContent = playerData.playerData.increaseLevel;
+        increaseCostDisplay.textContent = playerData.playerData.increaseCost;
 
-        intensifyLevelDisplay.innerText = playerData.playerData.intensifyLevel;
-        intensifyCostDisplay.innerText = playerData.playerData.intensifyCost;
+        intensifyLevelDisplay.textContent = playerData.playerData.intensifyLevel;
+        intensifyCostDisplay.textContent = playerData.playerData.intensifyCost;
 
-        duplicateLevelDisplay.innerText = playerData.playerData.duplicateLevel;
-        duplicateCostDisplay.innerText = playerData.playerData.duplicateCost;
+        duplicateLevelDisplay.textContent = playerData.playerData.duplicateLevel;
+        duplicateCostDisplay.textContent = playerData.playerData.duplicateCost;
 
-        multiplyLevelDisplay.innerText = playerData.playerData.multiplyLevel;
-        multiplyCostDisplay.innerText = playerData.playerData.multiplyCost;
+        multiplyLevelDisplay.textContent = playerData.playerData.multiplyLevel;
+        multiplyCostDisplay.textContent = playerData.playerData.multiplyCost;
 
 
         if (gameState.trainingAuto) {

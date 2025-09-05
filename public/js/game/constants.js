@@ -38,7 +38,7 @@ export const initialGameState = {
 export const initialPlayerData = {
     magicPower: new Decimal(), 
     trainingLength: 1000,
-    gain: 1,
+    gain: new Decimal(),
 
     increaseLevel: 0,
     increaseCost: 1,

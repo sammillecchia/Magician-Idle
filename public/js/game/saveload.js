@@ -1,6 +1,7 @@
 import { gameState } from "./game.js";
 import { playerData } from "../player/playerData.js";
 import { initialGameState, initialPlayerData } from "./constants.js";
+import { offlineSetup, calculateOffline } from "./offlineProgress.js"; 
 //handling of player data saving and loading, may want to move to player dir but idk
 
 
@@ -25,7 +26,9 @@ export function loadGame() {
 
         //Json doesnt save dates like JS does, use this to convert it back:
         if (loadedGameData.lastTimePlayed) {
-            gameState.lastTimePlayed = new Date(loadedState.lastTimePlayed);
+            gameState.lastTimePlayed = parseInt(loadedGameData.lastTimePlayed, 10);
+        } else {
+            gameState.lastTimePlayed = Date.now();
         }
 
      
@@ -40,12 +43,12 @@ export function loadGame() {
         
         playerData.magicPower = new Decimal(loadedPlayerData.magicPower);
         playerData.level = loadedPlayerData.level;
-        
+        playerData.gain = new Decimal(loadedPlayerData.gain);
     }
 
+    calculateOffline();
 
-
-    //TODO: add offline progress 
+    offlineSetup();
 }
 
 export function resetGame() {
@@ -61,8 +64,3 @@ export function resetGame() {
     //playerData.level = loadedPlayerData.level;
 }
 
-
-//IMPLEMENT SOON 
-function calculateOffline() {
-
-}

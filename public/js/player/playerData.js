@@ -5,7 +5,7 @@
 export const playerData = {
     magicPower: new Decimal(),
     trainingLength: 1000,
-    gain: 1,
+    gain: new Decimal(),  //Should be decimal
 
     increaseLevel: 0,
     increaseCost: 1,
@@ -53,10 +53,14 @@ export function setMagicPower(value) {
 }
 
 //increases players magicpower, can also be used to decrease it
-export function increaseMagicPower() {
+export function increaseMagicPower(times = 1) {
     calculateGain();
 
-    playerData.magicPower = playerData.magicPower.plus(playerData.gain);
+
+    playerData.magicPower = playerData.magicPower.plus(playerData.gain * times);
+    
+
+    
     // //console.log(playerData.magicPower.toString());
 }
 
@@ -64,12 +68,17 @@ export function increaseMagicPower() {
 
 
 //IMPORTANT, CALCULATES HOW MP YOU GET PER TRAINING
-function calculateGain() {
-    playerData.gain = 1 + playerData.increaseLevel + playerData.intensifyLevel ** 2 + 
-        playerData.duplicateLevel * 3 + playerData.multiplyLevel * 5; //placeholders
+export function calculateGain() {
+    playerData.gain = new Decimal(1 + 
+        playerData.increaseLevel + 
+        playerData.intensifyLevel ** 2 + 
+        playerData.duplicateLevel * 3 + 
+        playerData.multiplyLevel * 5); 
+        //placeholders for duplicate and multiply
 }
 
-
+//1, 4, 9, 16, 25
+//1, 3, 5, 7, 9
 
 
 export function decreaseMagicPower(value) {
