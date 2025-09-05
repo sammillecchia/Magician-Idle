@@ -3,3 +3,10 @@
   height: 100px;
   background-color: red;
 }
+
+#magicidle {
+  width: 100px;
+  height: 100px;
+  background-color: blueviolet;
+  color: whitesmoke;
+}
