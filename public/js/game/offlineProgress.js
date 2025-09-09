@@ -37,7 +37,7 @@ export function calculateOffline() {
     let timeElapsed = Date.now() - parseInt(gameState.lastTimePlayed, 10);
     console.log(timeElapsed);
     let secondsElapsed = Math.floor(timeElapsed / 1000);
-    let offlineMP;
+    let offlineMP = new Decimal();
     
     //only calculate if offline for > 50ms
     if (timeElapsed >= 50) {
@@ -54,7 +54,7 @@ export function calculateOffline() {
         }
         if (trainingElapsed) {
             increaseMagicPower(trainingElapsed);
-            offlineMP = playerData.gain * trainingElapsed;
+            offlineMP = playerData.gain.times(trainingElapsed);
         }
     }
     // //todo add training upgrades offline progress
@@ -64,6 +64,11 @@ export function calculateOffline() {
 
     //     console.log("offline progress calculated");
     }
+
+
+    // if (gameState.increaseRunning) {
+    //     let trainingElapsed = 
+    // }
 
     //change to 10-30 Seconds, 1s for testing
     //displays offline progress modal if offline for more than 20 seconds

@@ -48,6 +48,12 @@ div {
     color: #eee;
 }
 
+.cultivation-info {
+  user-select: none;
+  margin-bottom: 10%;
+  color: #eee;
+}
+
 .progress-container {
   width: 30vw;
   height: 3vh;

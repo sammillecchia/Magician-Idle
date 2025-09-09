@@ -13,7 +13,7 @@ export function createModal(offlineMP) {
     modalContent.classList.add('modal-content');
 
     //add text to modalContent
-    modalContent.textContent = `+MP: ${offlineMP}`;
+    modalContent.textContent = `+MP: ${Math.floor(offlineMP)}`;
 
     //append to body
     document.body.appendChild(modal);
@@ -22,7 +22,7 @@ export function createModal(offlineMP) {
     //event listener to close modal if you click outside the modalContent
     modal.addEventListener('click', (event) => {
     if (event.target === modal) {
-        modal.style.display = 'none';
+        modal.remove();
     }
 });
 }

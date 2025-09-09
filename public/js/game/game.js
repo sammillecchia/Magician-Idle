@@ -16,36 +16,38 @@ let loopDate = Date.now();
 export const gameState = {
     lastTimePlayed: null, 
     
-    trainingLength: 1000,   //Time = int (ms), should be in playerData?
+    //trainingLength: 1000,   //Time = int (ms), should be in playerData?
     trainingRunning: false, //Running = Boolean
     trainingAuto: false, //Looping = Boolean
     trainingStart: null,     //Start = Date
     
-    increaseLength: 1000, //ms placeholder
+    //increaseLength: 1000, //ms placeholder
     increaseUnlocked: false,
     increaseRunning: false,
     increaseStart: null,
 
-    intensifyLength: 1000, //ms placeholder
+    //intensifyLength: 1000, //ms placeholder
     intensifyUnlocked: false,
     intensifyRunning: false,
     intensifyStart: null,
 
-    duplicateLength: 1000, //ms placeholder
+    //duplicateLength: 1000, //ms placeholder
     duplicateUnlocked: false,
     duplicateRunning: false,
     duplicateStart: null,
     
-    multiplyLength: 1000, //ms placeholder
+    //multiplyLength: 1000, //ms placeholder
     multiplyUnlocked: false,
     multiplyRunning: false,
     multiplyStart: null,
 
-    awakeningLength: 1000, //ms placeholder
+    //awakeningLength: 1000, //ms placeholder
     awakeningUnlocked: false,
     awakeningRunning: false,
     awakeningStart: null
 }
+
+let e = gameState.multiplyLength;
 
 //sets event listeners, for one-time initalization logic
 //things were breaking when this was in main.js uuh maybe fix that idk
@@ -108,7 +110,7 @@ function trainingLoop() {
 
     //logic for increasing
     if (gameState.increaseRunning) {
-        if (loopDate - gameState.increaseLength >= gameState.increaseStart) {
+        if (loopDate - playerData.playerData.increaseLength >= gameState.increaseStart) {
             training.increaseComplete();
             gameState.increaseRunning = false;
         }
@@ -117,7 +119,7 @@ function trainingLoop() {
 
     //logic for intensify
     if (gameState.intensifyRunning) {
-        if (loopDate - gameState.intensifyLength >= gameState.intensifyStart) {
+        if (loopDate - playerData.playerData.intensifyLength >= gameState.intensifyStart) {
             training.intensifyComplete();
             gameState.intensifyRunning = false;
         }
@@ -125,7 +127,7 @@ function trainingLoop() {
 
     //logic for duplicate
     if (gameState.duplicateRunning) {
-        if (loopDate - gameState.duplicateLength >= gameState.duplicateStart) {
+        if (loopDate - playerData.playerData.duplicateLength >= gameState.duplicateStart) {
             training.duplicateComplete();
             gameState.duplicateRunning = false;
         }
@@ -133,7 +135,7 @@ function trainingLoop() {
 
     //logic for duplicate
     if (gameState.multiplyRunning) {
-        if (loopDate - gameState.multiplyLength >= gameState.multiplyStart) {
+        if (loopDate - playerData.playerData.multiplyLength >= gameState.multiplyStart) {
             training.multiplyComplete();
             gameState.multiplyRunning = false;
         }
@@ -143,7 +145,7 @@ function trainingLoop() {
 
 function cultivationLoop() {
     if (gameState.awakeningRunning) {
-       if (loopDate - gameState.awakeningLength >= gameState.awakeningStart) {
+       if (loopDate - playerData.playerData.awakeningLength >= gameState.awakeningStart) {
             cultivation.awakeningComplete();
             gameState.awakeningRunning = false;
         } 

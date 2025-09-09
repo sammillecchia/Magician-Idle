@@ -2,6 +2,8 @@
 import * as playerData from "../player/playerData.js";
 import { gameState } from "../game/game.js";
 import { menus } from "../game/menus.js";
+import { cultivationConstants } from "../game/constants.js";
+import { elements } from "../modules/cultivation.js";
 
 const mpText = document.getElementById('mp');
 const gainText = document.getElementById('gain');
@@ -20,6 +22,7 @@ const duplicateLevelDisplay = document.getElementById('duplicateLevel')
 const multiplyCostDisplay = document.getElementById('multiplyCostDisplay')
 const multiplyLevelDisplay = document.getElementById('multiplyLevel')
 
+const awakenCostDisplay = document.getElementById('awakenCost');
 
 //Updates all text with information, since this is called every gameLoop it needs checks
 //for whether the things being updated are actually visible
@@ -29,7 +32,7 @@ export function updateText() {
     
     if (menus.currentMenu === menus.allMenus.training) {
         mpText.textContent = Math.floor(playerData.getMagicPower());
-        gainText.textContent = playerData.playerData.gain;
+        gainText.textContent = Math.floor(playerData.playerData.gain);
 
         increaseLevelDisplay.textContent = playerData.playerData.increaseLevel;
         increaseCostDisplay.textContent = playerData.playerData.increaseCost;
@@ -50,4 +53,8 @@ export function updateText() {
             autoTrainButton.style.color = '#eee';
         }
     }
+
+   
 }
+
+

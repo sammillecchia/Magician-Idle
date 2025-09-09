@@ -44,6 +44,11 @@ export function loadGame() {
         playerData.magicPower = new Decimal(loadedPlayerData.magicPower);
         playerData.level = loadedPlayerData.level;
         playerData.gain = new Decimal(loadedPlayerData.gain);
+        playerData.increaseCost = new Decimal(loadedPlayerData.increaseCost)
+        playerData.intensifyCost = new Decimal(loadedPlayerData.intensifyCost)
+        playerData.duplicateCost = new Decimal(loadedPlayerData.duplicateCost)
+        playerData.multiplyCost = new Decimal(loadedPlayerData.multiplyCost)
+
     }
 
     calculateOffline();

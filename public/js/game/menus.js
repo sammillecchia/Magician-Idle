@@ -8,22 +8,21 @@ export const menus = {
     allMenus: {
         training: document.getElementById('trainingMenu'),
         stats: document.getElementById('statsMenu'),
-        exploration :document.getElementById('explorationMenu'),
+        exploration: document.getElementById('explorationMenu'),
         cultivation: document.getElementById('cultivationMenu'),
     },
 
-    currentCultivationSubMenu: null,
+    currentCultivationSubMenu: document.getElementById('awakeningDisplay'),
 
     cultivationSubMenus: {
-        awakening: null,
-        element1: {
-            cultivation: null,
-            empowerment: null
-        },
-        element2: null,
-        element3: null,
-        element4: null,
-        element5: null,
+        awakening: {
+            value: () => {return document.getElementById('awakeningDisplay')}
+        }
+        // element1: () => {return document.getElementById('element1Display')},
+        // element2: () => {return document.getElementById('element2Display')},
+        // element3: () => {return document.getElementById('element3Display')},
+        // element4: () => {return document.getElementById('element4Display')},
+        // element5: () => {return document.getElementById('element5Display')}
     }
 
 

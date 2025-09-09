@@ -3,25 +3,29 @@
 
 //Object for handling players data or stats
 export const playerData = {
+    //Training
     magicPower: new Decimal(),
     trainingLength: 1000,
     gain: new Decimal(),  //Should be decimal
 
     increaseLevel: 0,
-    increaseCost: 1,
+    increaseCost: new Decimal(1),
     increaseLength: 1000,
 
     intensifyLevel: 0,
-    intensifyCost: 1,
+    intensifyCost: new Decimal(1),
     intensifyLength: 1000,
 
     duplicateLevel: 0,
-    duplicateCost: 1,
+    duplicateCost: new Decimal(1),
     duplicateLength: 1000,
 
     multiplyLevel: 0,
-    multiplyCost: 1,
-    multiplyLength: 1000
+    multiplyCost: new Decimal(1),
+    multiplyLength: 1000,
+
+    //Cultivation
+    unlockedElements: []
 }
 
 //returns entire playerData object
@@ -57,14 +61,12 @@ export function increaseMagicPower(times = 1) {
     calculateGain();
 
 
-    playerData.magicPower = playerData.magicPower.plus(playerData.gain * times);
+    playerData.magicPower = playerData.magicPower.plus(playerData.gain.times(times));
     
 
     
     // //console.log(playerData.magicPower.toString());
 }
-
-
 
 
 //IMPORTANT, CALCULATES HOW MP YOU GET PER TRAINING
@@ -93,7 +95,7 @@ export function incrementIncreaseLevel() {
 }
 
 export function incrementIncreaseCost() {
-    playerData.increaseCost++; //should be more complex
+    playerData.increaseCost = playerData.increaseCost.plus(1); //should be more complex
     console.log(`increaseCost: ${playerData.increaseCost}`);
 }
 
@@ -104,7 +106,7 @@ export function incrementIntensifyLevel() {
 }
 
 export function incrementIntensifyCost() {
-    playerData.intensifyCost++; //should be more complex
+    playerData.intensifyCost = playerData.intensifyCost.plus(1); //should be more complex
     console.log(`increaseCost: ${playerData.intensifyCost}`);
 }
 
@@ -115,7 +117,7 @@ export function incrementDuplicateLevel() {
 }
 
 export function incrementDuplicateCost() {
-    playerData.duplicateCost++; //should be more complex
+    playerData.duplicateCost = playerData.duplicateCost.plus(1); //should be more complex
     console.log(`increaseCost: ${playerData.duplicateCost}`);
 }
 
@@ -126,7 +128,7 @@ export function incrementMultiplyLevel() {
 }
 
 export function incrementMultiplyCost() {
-    playerData.multiplyCost++; //should be more complex
+    playerData.multiplyCost = playerData.multiplyCost.plus(1); //should be more complex
     console.log(`increaseCost: ${playerData.multiplyCost}`);
 }
 

@@ -13,19 +13,44 @@ const statsMenu = document.getElementById('statsMenu');
 const explorationMenu = document.getElementById('explorationMenu');
 const cultivationMenu = document.getElementById('cultivationMenu');
 
+const awakeningMenuButton = document.getElementById('awakeningMenuButton');
+
+
 export function setupMenuButtons() {
     resetButton.addEventListener('click', resetGame);
     trainingMenuButton.addEventListener('click', displayTrainingMenu);
     cultivationMenuButton.addEventListener('click', displayCultivationMenu);
     statMenuButton.addEventListener('click', displayStatsMenu);
     explorationMenuButton.addEventListener('click', displayExplorationMenu);
+
+    
+    awakeningMenuButton.addEventListener('click', () => {setCultivationSubMenu(menus.cultivationSubMenus.awakening.value)});
+}
+
+
+export function setCultivationSubMenu(menuFunction) {
+
+    
+    const setMenu = menuFunction();
+    console.log(setMenu);
+    if (menus.currentCultivationSubMenu) {
+        menus.currentCultivationSubMenu.style.display = 'none';
+    }
+
+    
+
+    
+        // If it exists, set it as the new current submenu and show it
+        menus.currentCultivationSubMenu = setMenu;
+        menus.currentCultivationSubMenu.style.display = 'flex';
+    
 }
 
 function setMenu(menuName) {
     
 
 
-    menus.currentMenu.style.display = 'none'
+    menus.currentMenu.style.display = 'none';
     if (menus.allMenus[menuName]) {  
         menus.currentMenu = menus.allMenus[menuName];  
     } else {
@@ -38,6 +63,9 @@ function setMenu(menuName) {
     
 
 }
+
+//TODO: Remove these functions as they're redundant and animation/gamestate should be 
+//handled in their own location
 
 //sets the visble mainBody to training menu
 export function displayTrainingMenu() {

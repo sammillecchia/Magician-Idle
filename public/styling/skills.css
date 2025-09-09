@@ -21,10 +21,10 @@
   background-color: #09e;
 }
 
-#element1MenuButton {
+/* #element1MenuButton {
   display: none;
   background-color: #e0e; 
-}
+} */
 
 #trainingMenu {
   display: flex;

@@ -29,7 +29,7 @@ export const initialGameState = {
     multiplyRunning: false,
     multiplyStart: null,
 
-    awakeningLength: 10000, //ms placeholder
+    awakeningLength: 1000, //ms placeholder
     awakeningUnlocked: false,
     awakeningRunning: false,
     awakeningStart: null  
@@ -41,18 +41,38 @@ export const initialPlayerData = {
     gain: new Decimal(),
 
     increaseLevel: 0,
-    increaseCost: 1,
+    increaseCost: new Decimal(),
     increaseLength: 1000,
 
     intensifyLevel: 0,
-    intensifyCost: 1,
+    intensifyCost: new Decimal(),
     intensifyLength: 1000,
 
     duplicateLevel: 0,
-    duplicateCost: 1,
+    duplicateCost: new Decimal(),
     duplicateLength: 1000,
 
     multiplyLevel: 0,
-    multiplyCost: 1,
-    multiplyLength: 1000
+    multiplyCost: new Decimal(),
+    multiplyLength: 1000,
+
+    awakeningLevel: 0,
+    awakeningCost: new Decimal(),
+    awakeningLength: 1000
+}
+
+
+export const cultivationConstants = {
+    awakeningCosts: [100, 200, 300, 400, 500, Infinity],
+    
+    elements: {
+        1: "Fire",
+        2: "Ice",
+        3: "Earth",
+        4: "Water",
+        5: "Wind",
+        6: "Lightning"
+    }
+
+    
 }

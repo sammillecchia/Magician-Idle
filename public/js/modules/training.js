@@ -98,8 +98,8 @@ export function trainingComplete() {
 export function increase() {
     if (!gameState.increaseRunning) {
         console.log('increase')
-        if (playerData.playerData.magicPower >= playerData.playerData.increaseCost) {
-            playerData.decreaseMagicPower(playerData.playerData.increaseCost); //stupid
+        if (playerData.playerData.magicPower.gte(playerData.playerData.increaseCost)) {
+            playerData.decreaseMagicPower(playerData.playerData.increaseCost);
             gameState.increaseRunning = true;
             gameState.increaseStart = Date.now();
         } else {
@@ -119,7 +119,7 @@ export function increaseComplete() {
 export function intensify() {
     if (!gameState.intensifyRunning) {
         console.log('intensify')
-        if (playerData.playerData.magicPower >= playerData.playerData.intensifyCost) {
+        if (playerData.playerData.magicPower.gte(playerData.playerData.intensifyCost)) {
             playerData.decreaseMagicPower(playerData.playerData.intensifyCost); //stupid
             gameState.intensifyRunning = true;
             gameState.intensifyStart = Date.now();
@@ -140,7 +140,7 @@ export function intensifyComplete() {
 export function duplicate() {
     if (!gameState.duplicateRunning) {
         console.log('duplicate')
-        if (playerData.playerData.magicPower >= playerData.playerData.duplicateCost) {
+        if (playerData.playerData.magicPower.gte(playerData.playerData.duplicateCost)) {
             playerData.decreaseMagicPower(playerData.playerData.duplicateCost); //stupid
             gameState.duplicateRunning = true;
             gameState.duplicateStart = Date.now();
@@ -162,7 +162,7 @@ export function duplicateComplete() {
 export function multiply() {
     if (!gameState.multiplyRunning) {
         console.log('multiply')
-        if (playerData.playerData.magicPower >= playerData.playerData.multiplyCost) {
+        if (playerData.playerData.magicPower.gte(playerData.playerData.multiplyCost)) {
             playerData.decreaseMagicPower(playerData.playerData.multiplyCost); //stupid
             gameState.multiplyRunning = true;
             gameState.multiplyStart = Date.now();
