@@ -2,12 +2,14 @@ import { gameState } from "./game.js";
 import { playerData } from "../player/playerData.js";
 import { initialGameState, initialPlayerData } from "./constants.js";
 import { offlineSetup, calculateOffline } from "./offlineProgress.js"; 
+import { setupMenuButtons } from "../ui/events.js";
+import { setupCultivation } from "../modules/cultivation.js";
 //handling of player data saving and loading, may want to move to player dir but idk
 
 
 
 export function saveGame() {
-    //localStorage.removeItem('gameData');
+    console.log("saving game")
     localStorage.setItem('gameData', JSON.stringify(gameState));
     localStorage.setItem('playerData', JSON.stringify(playerData))
 }
@@ -18,6 +20,7 @@ export function loadGame() {
     
     const savedGameData = localStorage.getItem('gameData');
     const savedPlayerData = localStorage.getItem('playerData');
+    
 
     if (savedGameData) {
         const loadedGameData = JSON.parse(savedGameData);
@@ -60,12 +63,14 @@ export function resetGame() {
     localStorage.clear();
 
     //gameState
-    Object.assign(gameState, initialGameState);
+    Object.assign(gameState, JSON.parse(JSON.stringify(initialGameState)));
 
     //playerData
-    Object.assign(playerData, initialPlayerData);
+    Object.assign(playerData, JSON.parse(JSON.stringify(initialPlayerData)));
+    saveGame();
+    loadGame();
+
+    setupCultivation();
         
-    //playerData.magicPower = new Decimal(loadedPlayerData.magicPower);
-    //playerData.level = loadedPlayerData.level;
 }
 

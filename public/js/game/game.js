@@ -5,7 +5,7 @@ import { loadGame, saveGame } from "./saveload.js";
 import { updateText } from "../utils/updateText.js";
 import { setupMenuButtons } from "../ui/events.js";
 import { offlineSetup } from "./offlineProgress.js";
-
+import { setupCultivation } from "../modules/cultivation.js";
 
 //this is dumb idk
 let lastUpdateTime = Date.now();
@@ -55,6 +55,7 @@ export function startGame() {
     training.setupEventListeners();
     cultivation.setupEventListeners();
     loadGame();
+    setupCultivation();
     setupMenuButtons();
     requestAnimationFrame(gameLoop);
 }
@@ -83,7 +84,6 @@ function saveLoop() {
     if (loopDate - 10000 >= lastSaveTime) {
         saveGame();
         lastSaveTime = Date.now();
-        console.log("saved to localStorage");
     }
 }
 

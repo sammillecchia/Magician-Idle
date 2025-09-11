@@ -58,12 +58,16 @@ export const initialPlayerData = {
 
     awakeningLevel: 0,
     awakeningCost: new Decimal(),
-    awakeningLength: 1000
+    awakeningLength: 1000,
+
+    lockedElements: ["Fire", "Ice", "Earth", "Water", "Wind","Lightning"],
+    unlockedElements: []
+
 }
 
 
 export const cultivationConstants = {
-    awakeningCosts: [100, 200, 300, 400, 500, Infinity],
+    awakeningCosts: [1, 2, 3, 4, 5, Infinity],
     
     elements: {
         1: "Fire",

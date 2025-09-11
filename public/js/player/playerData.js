@@ -25,6 +25,7 @@ export const playerData = {
     multiplyLength: 1000,
 
     //Cultivation
+    lockedElements: [],
     unlockedElements: []
 }
 

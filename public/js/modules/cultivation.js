@@ -5,6 +5,7 @@ import { gameState } from "../game/game.js"
 import { updateProgressCircle } from "../utils/progressbar.js";
 import { cultivationConstants } from "../game/constants.js";
 import { setCultivationSubMenu } from "../ui/events.js";
+import { saveGame } from "../game/saveload.js";
 
 const awakeningButton = document.getElementById('awakening');
 const awakeningProgressCircle = document.getElementById('awakeningProgressCircle');
@@ -25,18 +26,11 @@ export let elements = {
         Water: "#0000cc",
         Wind: "#33cc33",
         Lightning: "#ff00ff"
-    },
-    
-    //uuuh
-    currentElements: {
-        1: "None",
-        2: "None"
     }
-    
 
 
-    // totalElements: Object.keys(possibleElements.elements).length
 }
+
 
 export function generateSubmenus() {
     const removeSubMenuButtons = document.querySelectorAll('.elementSubMenuButton');
@@ -53,7 +47,7 @@ export function generateSubmenus() {
 
     //ganerates all submenu
     let i = 0;
-    elements.unlockedElements.forEach(element => {
+    playerData.playerData.unlockedElements.forEach(element => {
         i++;
 
         //create a button for each element
@@ -100,28 +94,33 @@ export function generateSubmenus() {
 
 //unlocks a new currently random element once awakening is complete
 function unlockElement() {
-    if (elements.lockedElements.length === 0) {
-        console.error("No Elements Left in elements.lockedElements");
+    if (playerData.playerData.lockedElements.length === 0) {
+        console.error("No Elements Left in playerData.playerData.lockedElements");
         return "Cant Unlock";
     }
 
-    const random = Math.floor(Math.random() * elements.lockedElements.length);
-    const chosenElement = elements.lockedElements.splice(random, 1)[0];
-    elements.unlockedElements.push(chosenElement);
+    const random = Math.floor(Math.random() * playerData.playerData.lockedElements.length);
+    const chosenElement = playerData.playerData.lockedElements.splice(random, 1)[0];
+    playerData.playerData.unlockedElements.push(chosenElement);
 
-    updateAwakeningCost()
+    // playerData.playerData.unlockedElements = elements.unlockedElements; 
+    // playerData.playerData.lockedElements = elements.lockedElements;
+    saveGame();
+    console.log(playerData.playerData.unlockedElements);
+    console.log(playerData.playerData.lockedElements);
+    updateAwakeningCostDisplay();
     generateSubmenus();
 
     console.log(`Unlocked element ${chosenElement}`);
 }
 
 export function setupEventListeners() {
-    updateAwakeningCost()
+    updateAwakeningCostDisplay();
     awakeningButton.addEventListener('click', awakening);
 }
 
-export function updateAwakeningCost() {
-    awakenCostDisplay.textContent = `${cultivationConstants.awakeningCosts[elements.unlockedElements.length]}`;
+export function updateAwakeningCostDisplay() {
+    awakenCostDisplay.textContent = `${cultivationConstants.awakeningCosts[playerData.playerData.unlockedElements.length]}`;
 }
 
 //Run when awakening button is clicked, sets up gameState for awakening if have enough MP
@@ -129,7 +128,7 @@ function awakening() {
 
     //If magicPower gte the cost of next element
     if (!gameState.awakeningRunning) {
-        const currentCost = cultivationConstants.awakeningCosts[elements.unlockedElements.length];
+        const currentCost = cultivationConstants.awakeningCosts[playerData.playerData.unlockedElements.length];
         console.log(currentCost);
         if (playerData.playerData.magicPower.gte(currentCost)) {
             playerData.decreaseMagicPower(currentCost)
@@ -153,10 +152,17 @@ export function updateProgressCircles() {
     }
 }
 
+//unlocks an element when awakening progress is finished
 export function awakeningComplete() {
     console.log("awakening Complete");
     updateProgressCircle(0, awakeningProgressCircle);
     unlockElement();
+}
+
+//setup for cultivation on load/start
+export function setupCultivation() {
+   generateSubmenus();
+   updateAwakeningCostDisplay();
 }
 
 
