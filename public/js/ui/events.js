@@ -14,6 +14,7 @@ const explorationMenu = document.getElementById('explorationMenu');
 const cultivationMenu = document.getElementById('cultivationMenu');
 
 const awakeningMenuButton = document.getElementById('awakeningMenuButton');
+const testMenuButton = document.getElementById('testMenuButton');
 
 
 export function setupMenuButtons() {
@@ -25,6 +26,7 @@ export function setupMenuButtons() {
 
     
     awakeningMenuButton.addEventListener('click', () => {setCultivationSubMenu(menus.cultivationSubMenus.awakening.value)});
+    testMenuButton.addEventListener('click', () => {setCultivationSubMenu(menus.cultivationSubMenus.test.value)} )
 }
 
 

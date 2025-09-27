@@ -17,6 +17,12 @@ export const menus = {
     cultivationSubMenus: {
         awakening: {
             value: () => {return document.getElementById('awakeningDisplay')}
+        },
+        test: {
+            value: () => {return document.getElementById('testDisplay')},
+            gather: () => {return document.getElementById('gatherMenu1')},
+            formation: () => {return document.getElementById('formationMenu1')}
+
         }
         // element1: () => {return document.getElementById('element1Display')},
         // element2: () => {return document.getElementById('element2Display')},

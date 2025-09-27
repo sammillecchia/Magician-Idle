@@ -4,6 +4,7 @@
 <title>Magic</title>
 <link rel="stylesheet" href="./styling/style.css">
 <link rel="stylesheet" href="./styling/skills.css">
+<link rel="stylesheet" href="./styling/cultivation.css">
 </head>
 <body>
 
@@ -16,9 +17,9 @@
 <div id="menuButtons">
     <div class="menuButton" id="trainingMenuButton">Training</div>
     <div class="menuButton" id="cultivationMenuButton">Cultivation</div>
-    <div class="menuButton" id="statMenuButton">Settings/Stats</div>
-    <div class="menuButton" id=""></div>
     <div class="menuButton" id="explorationMenuButton">Exploration</div>   
+    <div class="menuButton" id="">Totem (TBA)</div>
+    <div class="menuButton" id="statMenuButton">Settings/Stats</div>
     <div class="menuButton" id="resetButton">Reset</div> 
 </div>
 <!-- 
@@ -44,19 +45,97 @@ TODO: ADD THIS BACK
         Awakening
       </div>
 
+      <div id="testMenuButton" class="cultivationSubMenuButton">
+        test
+      </div>
+
     </div>
 
     <div id="cultivationSubMenu">
-      <div class="currentCultivation" id="awakeningDisplay">
-        <div class="cultivation-info"><span id="awakenCost">0</span> MP to Awaken</div>
-        <div class="awakeningProgress">
-          <div id="awakeningProgressCircle"></div>
+      <div class="currentCultivation, awakeningSubMenu" id="awakeningDisplay">
+        <div id="awakeningCenter">
+          <div class="cultivation-info"><span id="awakenCost">0</span> MP to Awaken</div>
+          <div class="awakeningProgress">
+            <div id="awakeningProgressCircle"></div>
+          </div>
+          <div id= "awakening" class="button">AWAKEN</div>
+        </div>
+      </div>
+
+      <!-- Currently breaks awakening menu, only using to build design of generated element menus -->
+      <div class="currentCultivation" id="testDisplay">
+        <div class="cultivationSelector" id="cultivationSelector1">
+          <div id="gatherButton1" class="cultivationSelectorButton">gather</div>
+          <div id="formationButton1" class="cultivationSelectorButton">formation</div>
+        </div>
+
+        <div id="gatherMenu1" class="gatherMenu">
+          <div class="awakeningProgress">
+            <div id="awakeningProgressCircle"></div>
+          </div>
+          <div id="slidecontainer">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+          </div>
         </div>
 
 
+        <!-- Show on formationButton click -->
+        <div id="formationMenu1" class="formationMenu">
+          
+          <div id="testProgress1" class="verticalProgressContainer">
+            <div id="progressContainer1" class="progessContainer">
+              <div id="testBar1" class="progressBarVertical"></div>
+              <div id="tierBar1" class="tierBarVertical"></div>
+            </div>
+            <div id="progressBarButton1" class="varticalBarButton">STAR</div>
+          </div>
 
-        <div id= "awakening" class="button">AWAKEN</div>
+          <div id="testProgress2" class="verticalProgressContainer">
+            <div id="progressContainer2" class="progessContainer">
+              <div id="testBar2" class="progressBarVertical"></div>
+              <div id="tierBar2" class="tierBarVertical"></div>
+            </div>
+            <div id="progressBarButton2" class="varticalBarButton">PATH</div>
+          </div>
+
+          <div id="testProgress3" class="verticalProgressContainer">
+            <div id="progressContainer3" class="progessContainer">
+              <div id="testBar3" class="progressBarVertical"></div>
+              <div id="tierBar3" class="tierBarVertical"></div>
+            </div>
+            <div id="progressBarButton3" class="varticalBarButton">MAP</div>
+          </div>
+
+          <div id="testProgress4" class="verticalProgressContainer">
+            <div id="progressContainer4" class="progessContainer">
+              <div id="testBar4" class="progressBarVertical"></div>
+              <div id="tierBar4" class="tierBarVertical"></div>
+            </div>
+            <div id="progressBarButton4" class="varticalBarButton">CONSTELLATE</div>
+          </div>
+
+          <div id="testProgress5" class="verticalProgressContainer">
+            <div id="progressContainer5" class="progessContainer">
+              <div id="testBar5" class="progressBarVertical"></div>
+              <div id="tierBar5" class="tierBarVertical"></div>
+            </div>
+            <div id="progressBarButton5" class="varticalBarButton">PALACE</div>
+          </div>
+
+          <div id="testProgress6" class="verticalProgressContainer">
+            <div id="progressContainer6" class="progessContainer">
+              <div id="testBar6" class="progressBarVertical"></div>
+              <div id="tierBar6" class="tierBarVertical"></div>
+            </div>
+            <div id="progressBarButton6" class="varticalBarButton">MANIFEST</div>
+          </div>
+        </div>
+       
       </div>
+
+
+
+
       <!-- <div class="currentCultivation" id="element1Display"></div> SHOULD BE DYNAMICALLY ADDED -->
     </div>
   </div>

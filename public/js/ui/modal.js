@@ -2,27 +2,37 @@
 //Using this for offline progress and possibly game updates
 
 
+
 export function createModal(offlineMP) {
-    //create modal divs
-    const modal = document.createElement('div');
-    const modalContent = document.createElement('div');
+  // Remove any existing modals from the DOM
+  const removeModals = document.querySelectorAll('.modal');
 
-    modal.appendChild(modalContent);
-    //apply styling
-    modal.classList.add('modal');
-    modalContent.classList.add('modal-content');
+  removeModals.forEach(element => {
+    element.remove();
+  });
 
-    //add text to modalContent
-    modalContent.textContent = `+MP: ${Math.floor(offlineMP)}`;
+  //create the new modal elements
+  const modal = document.createElement('div');
+  const modalContent = document.createElement('div');
 
-    //append to body
-    document.body.appendChild(modal);
-    modal.style.display = "block";
+  //set up the modal and its content
+  modal.appendChild(modalContent);
+  modal.classList.add('modal');
+  modalContent.classList.add('modal-content');
+  modalContent.textContent = `+MP: ${Math.floor(offlineMP)}`;
 
-    //event listener to close modal if you click outside the modalContent
-    modal.addEventListener('click', (event) => {
+  // Append the modal to the body and make it visible
+  document.body.appendChild(modal);
+  modal.style.display = "block";
+
+  //function that will close the modal when clicking outside content
+  function closeModal(event) {
     if (event.target === modal) {
-        modal.remove();
+      modal.remove();
+      modal.removeEventListener('click', closeModal);
     }
-});
+  }
+
+  // Add the event listener to the modal
+  modal.addEventListener('click', closeModal);
 }

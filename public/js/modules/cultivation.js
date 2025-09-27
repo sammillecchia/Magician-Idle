@@ -14,6 +14,9 @@ const cultivationSubMenuButtons = document.getElementById('cultivationSubMenuBut
 const cultivationSubMenu = document.getElementById('cultivationSubMenu');
 const awakenCostDisplay = document.getElementById('awakenCost');
 
+
+//Need to eventually refactor this out, used to handle state for elements
+//Holds colors for each element
 export let elements = {
     elements: ["Fire", "Ice", "Earth", "Water", "Wind","Lightning" ],
     lockedElements: ["Fire", "Ice", "Earth", "Water", "Wind","Lightning" ],
@@ -31,7 +34,7 @@ export let elements = {
 
 }
 
-
+//Generates submenus, run on init and when a new element is added
 export function generateSubmenus() {
     const removeSubMenuButtons = document.querySelectorAll('.elementSubMenuButton');
     const removeSubMenus = document.querySelectorAll('.elementSubMenu');
@@ -64,14 +67,14 @@ export function generateSubmenus() {
 
         //create a display/submenu for each element
         const elementDisplay = document.createElement('div');
-        elementDisplay.className = "cultivationSubMenu elementSubMenu";
+        elementDisplay.className = "elementSubMenu";
         elementDisplay.id = `element${i}Display`;
 
         elementDisplay.textContent = `${element}`;
         elementDisplay.style.backgroundColor =  elements.elementColors[element];
         elementDisplay.style.display = 'none';
 
-        cultivationSubMenu.appendChild(elementDisplay)
+        
 
         //save menu handler to object associated with element
         const number = i
@@ -86,11 +89,36 @@ export function generateSubmenus() {
 
         //add event listener to button that runs the function to set the submenu
         elementButton.addEventListener('click', () => {setCultivationSubMenu(menus.cultivationSubMenus[elementName][value])});
+        
+        const cultivationSubMenuSelector = document.createElement('div');
+        cultivationSubMenuSelector.className = "cultivationSelector";
+
+        const formationButton = document.createElement('div');
+        formationButton.className = "cultivationSelectorButton";
+        formationButton.id = `${element}formationButton`;
+        //formationButton.style.display = 'none';
+
+        const gatherButton = document.createElement('div');
+        gatherButton.className = "cultivationSelectorButton";
+        gatherButton.id = `${element}gatherButton`;
+        //gatherButton.style.display = 'none';
+
+        cultivationSubMenuSelector.appendChild(formationButton);
+        cultivationSubMenuSelector.appendChild(gatherButton);
+        elementDisplay.appendChild(cultivationSubMenuSelector)
+        //moved to not mess up DOM ordering, delete later
+        cultivationSubMenu.appendChild(elementDisplay)
     })
 
     console.log(menus);
 }
 
+//TODO: Create
+//Generates HTML elements that go inside each submenu for gameplay functionality
+// export function generateSubmenuContent() { 
+
+
+// }
 
 //unlocks a new currently random element once awakening is complete
 function unlockElement() {
@@ -114,11 +142,13 @@ function unlockElement() {
     console.log(`Unlocked element ${chosenElement}`);
 }
 
+//Sets up inital event listeners for cultivation
 export function setupEventListeners() {
     updateAwakeningCostDisplay();
     awakeningButton.addEventListener('click', awakening);
 }
 
+//Updates the display for how much it costs to awaken based off of how many elements have already been unlocked
 export function updateAwakeningCostDisplay() {
     awakenCostDisplay.textContent = `${cultivationConstants.awakeningCosts[playerData.playerData.unlockedElements.length]}`;
 }
