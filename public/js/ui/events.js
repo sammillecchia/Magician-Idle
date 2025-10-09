@@ -48,6 +48,32 @@ export function setCultivationSubMenu(menuFunction) {
     
 }
 
+
+//element is the value in the cultivationSubMenus table eg; element1, element4
+//changeTO is the visible subSubMenu you want passed eg; gather, formation (only 2)
+export function changeCultivationSubMenu(element, changeTO) {
+
+    menus.cultivationSubMenus[element].current = menus.cultivationSubMenus[element][changeTO];
+    console.log(element);
+    console.log(changeTO);
+
+    const divElement = menus.cultivationSubMenus[element].current();
+
+    //idk bro theres a bug where it displays both formation and gather
+    const formationElement = menus.cultivationSubMenus[element].formation();
+    const gatherElement = menus.cultivationSubMenus[element].gather();
+    console.log(divElement);
+
+    formationElement.style.display = 'none';
+    gatherElement.style.display = 'none';
+
+    divElement.style.display = 'flex';
+    
+    
+    
+
+}
+
 function setMenu(menuName) {
     
 

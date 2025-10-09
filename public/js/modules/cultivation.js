@@ -4,7 +4,7 @@ import { menus } from "../game/menus.js";
 import { gameState } from "../game/game.js"
 import { updateProgressCircle } from "../utils/progressbar.js";
 import { cultivationConstants } from "../game/constants.js";
-import { setCultivationSubMenu } from "../ui/events.js";
+import { setCultivationSubMenu, changeCultivationSubMenu } from "../ui/events.js";
 import { saveGame } from "../game/saveload.js";
 
 const awakeningButton = document.getElementById('awakening');
@@ -29,9 +29,21 @@ export let elements = {
         Water: "#0000cc",
         Wind: "#33cc33",
         Lightning: "#ff00ff"
-    }
+    },
 
+    tiers: ["Star", "Path", "Map", "Contellation", "Vision", "Manifestation"],
+    tierNames: ["stars", "paths", "maps", "constellations", "visions", "manifestations"],
+    tierButtonLabels: ["STAR", "PATH", "MAP", "CONSTELLATE", "VISION", "MANIFEST"]
+}   
 
+export function checkFormationMilestones() {
+    //TODO:
+    //check all playerData.playerData.elements for
+    //element1 through element5
+    //if star - manifestation amount is > 6, if so:
+    //make the container for the progress bar relating to that element and tier 
+    //element.style.display = "flex"
+    
 }
 
 //Generates submenus, run on init and when a new element is added
@@ -46,6 +58,7 @@ export function generateSubmenus() {
     removeSubMenuButtons.forEach(element => {
         element.remove();
     })
+
 
 
     //ganerates all submenu
@@ -70,7 +83,7 @@ export function generateSubmenus() {
         elementDisplay.className = "elementSubMenu";
         elementDisplay.id = `element${i}Display`;
 
-        elementDisplay.textContent = `${element}`;
+        //elementDisplay.textContent = `${element}`;
         elementDisplay.style.backgroundColor =  elements.elementColors[element];
         elementDisplay.style.display = 'none';
 
@@ -90,24 +103,127 @@ export function generateSubmenus() {
         //add event listener to button that runs the function to set the submenu
         elementButton.addEventListener('click', () => {setCultivationSubMenu(menus.cultivationSubMenus[elementName][value])});
         
+        //Creates menu and buttons for gather/formation
         const cultivationSubMenuSelector = document.createElement('div');
         cultivationSubMenuSelector.className = "cultivationSelector";
 
-        const formationButton = document.createElement('div');
-        formationButton.className = "cultivationSelectorButton";
-        formationButton.id = `${element}formationButton`;
-        //formationButton.style.display = 'none';
-
         const gatherButton = document.createElement('div');
         gatherButton.className = "cultivationSelectorButton";
-        gatherButton.id = `${element}gatherButton`;
-        //gatherButton.style.display = 'none';
+        gatherButton.id = `gatherButton${element}`;
+        gatherButton.textContent = "gather"
 
-        cultivationSubMenuSelector.appendChild(formationButton);
+        
+
+        const formationButton = document.createElement('div');
+        formationButton.className = "cultivationSelectorButton";
+        formationButton.id = `formationButton${element}`;
+        formationButton.textContent = "formation"
+
         cultivationSubMenuSelector.appendChild(gatherButton);
-        elementDisplay.appendChild(cultivationSubMenuSelector)
-        //moved to not mess up DOM ordering, delete later
+        cultivationSubMenuSelector.appendChild(formationButton);
+
+        //TTTTTOOOOOOOOOODOOOOOOOOOOOOOO
+            //NEEDS TO BE DUSTPROGRESS CLASS/ID NOT AWAKENING
+        //Creates dust progress square
+        const dustProgress = document.createElement('div');
+        dustProgress.className = "awakeningProgress";
+        
+        const dustProgressCenter = document.createElement('div');
+        dustProgressCenter.id = `${element}ProgressCenter`;
+
+        dustProgress.appendChild(dustProgressCenter);
+
+        //Creates dust percentage slider
+        const dustSlider = document.createElement('div');
+        dustSlider.id = "slideContainer";
+
+            //SLIDER AND MYRANGE ALSO NEED TO BE REFACTORED
+        
+        const dustInput = document.createElement('input');
+        dustInput.type = "range";
+        dustInput.min = "1";
+        dustInput.max = "100";
+        dustInput.className = "slider"
+        dustInput.id = "myRange"
+
+        dustSlider.appendChild(dustInput);
+
+        //Creates gathermenu
+        const gatherMenu = document.createElement('div');
+        gatherMenu.className = "gatherMenu"
+        gatherMenu.id = `gatherMenu${element}`;
+
+        gatherMenu.appendChild(dustProgress);
+        gatherMenu.appendChild(dustSlider);
+
+        //Creates formationMenu
+        const formationMenu = document.createElement('div');
+        formationMenu.className = "formationMenu"
+        formationMenu.id = `formationMenu${element}`;
+        //Commenting this out, it just adds text to formation menu with element name
+        //formationMenu.textContent = `${element}`
+
+        //Should be saved instead of set
+        formationMenu.style.display = "none";
+
+        gatherMenu.appendChild(dustProgress);
+        gatherMenu.appendChild(dustSlider);
+
+        const gather = "gather";
+        const formation = "formation";
+        menus.cultivationSubMenus[elementName][gather] = () => {return document.getElementById(`gatherMenu${element}`)};
+        menus.cultivationSubMenus[elementName][formation] = () => {return document.getElementById(`formationMenu${element}`)};
+
+
+        //Appends all new elements to DOM in element display
+        elementDisplay.appendChild(cultivationSubMenuSelector);
+        elementDisplay.appendChild(gatherMenu);
+        elementDisplay.appendChild(formationMenu);
+        
+        //Event listeners for gather and formation sub-submenu buttons
+        gatherButton.addEventListener("click", () => {changeCultivationSubMenu(elementName, "gather")});
+        formationButton.addEventListener("click", () => {changeCultivationSubMenu(elementName, "formation")});
+
+        
+        //Generates progress bars, these are appended to formationMenu
+        const formationBars = document.createElement('div');
+        formationBars.className = "formationBars";
+        let j = 0;
+        elements.tiers.forEach(tier => {
+
+            const container = document.createElement('div');   
+            container.className = "verticalProgressContainer"
+            container.id = `element${i}${tier}Container`
+            
+
+            const progressContainer = document.createElement('div');
+            progressContainer.className = "progessContainer"
+            progressContainer.id = `${element}${tier}ProgessContainer`
+
+            const progressBar = document.createElement('div');
+            progressBar.className = "progressBarVertical"
+            progressBar.id = `${element}${tier}ProgressBarVertical`;
+            
+            const formationButton = document.createElement('div');
+            formationButton.className = "verticalBarButton"
+            formationButton.id = `${element}${tier}VerticalBarButton`;
+            formationButton.textContent = `${elements.tierButtonLabels[j]}`
+
+            progressContainer.appendChild(progressBar);
+            container.appendChild(progressContainer);
+            container.appendChild(formationButton);
+
+            formationBars.appendChild(container);
+      
+            j++;
+        });
+
+        formationMenu.appendChild(formationBars);
+
         cultivationSubMenu.appendChild(elementDisplay)
+
+
+        
     })
 
     console.log(menus);
@@ -173,6 +289,10 @@ function awakening() {
 
 }
 
+
+
+
+
 //Like updateProgressBars except for a circle :p
 export function updateProgressCircles() {
     if (gameState.awakeningRunning) {
@@ -187,6 +307,7 @@ export function awakeningComplete() {
     console.log("awakening Complete");
     updateProgressCircle(0, awakeningProgressCircle);
     unlockElement();
+    checkFormationMilestones();
 }
 
 //setup for cultivation on load/start

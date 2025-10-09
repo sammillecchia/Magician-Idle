@@ -61,8 +61,74 @@ export const initialPlayerData = {
     awakeningLength: 1000,
 
     lockedElements: ["Fire", "Ice", "Earth", "Water", "Wind","Lightning"],
-    unlockedElements: []
+    unlockedElements: [],
 
+    elements: {
+        element1: {
+            magicDust: new Decimal(),
+            magicDustGain: new Decimal(),
+            stars: 7,
+            starCost: new Decimal(),
+            paths: 0,
+            pathCost: 7, //This probably should be in constants
+            maps: 0,
+            constellations: 0,
+            visions: 0, //may change to palace idk though
+            manifestations: 0
+        },
+
+        element2: {
+            magicDust: new Decimal(),
+            magicDustGain: new Decimal(),
+            stars: 7,
+            starCost: new Decimal(),
+            paths: 0,
+            pathCost: 7, //This probably should be in constants
+            maps: 0,
+            constellations: 0,
+            visions: 0, //may change to palace idk though
+            manifestations: 0
+        },
+
+        element3: {
+            magicDust: new Decimal(),
+            magicDustGain: new Decimal(),
+            stars: 7,
+            starCost: new Decimal(),
+            paths: 0,
+            pathCost: 7, //This probably should be in constants
+            maps: 0,
+            constellations: 0,
+            visions: 0, //may change to palace idk though
+            manifestations: 0
+        },
+
+        element4: {
+            magicDust: new Decimal(),
+            magicDustGain: new Decimal(),
+            stars: 7,
+            starCost: new Decimal(),
+            paths: 0,
+            pathCost: 7, //This probably should be in constants
+            maps: 0,
+            constellations: 0,
+            visions: 0, //may change to palace idk though
+            manifestations: 0
+        },
+
+        element5: {
+            magicDust: new Decimal(),
+            magicDustGain: new Decimal(),
+            stars: 7,
+            starCost: new Decimal(),
+            paths: 0,
+            pathCost: 7, //This probably should be in constants
+            maps: 0,
+            constellations: 0,
+            visions: 0, //may change to palace idk though
+            manifestations: 0
+        }
+    }
 }
 
 

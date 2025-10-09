@@ -146,8 +146,9 @@ function trainingLoop() {
 function cultivationLoop() {
     if (gameState.awakeningRunning) {
        if (loopDate - playerData.playerData.awakeningLength >= gameState.awakeningStart) {
-            cultivation.awakeningComplete();
             gameState.awakeningRunning = false;
+            cultivation.awakeningComplete();
+            
         } 
     }
 }

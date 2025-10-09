@@ -19,6 +19,7 @@ export const menus = {
             value: () => {return document.getElementById('awakeningDisplay')}
         },
         test: {
+            current: null,
             value: () => {return document.getElementById('testDisplay')},
             gather: () => {return document.getElementById('gatherMenu1')},
             formation: () => {return document.getElementById('formationMenu1')}

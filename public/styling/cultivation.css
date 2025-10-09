@@ -1,5 +1,4 @@
 .verticalProgressContainer {
-    margin-left: 3vw;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -25,7 +24,7 @@
     background-color: #fc0;
 }
 
-.varticalBarButton {
+.verticalBarButton {
     user-select: none;
     display: grid;
     white-space: nowrap;
@@ -85,7 +84,8 @@
 .elementSubMenu {
   width: 100%;
   height: 100%;
-  display: flex;
+  display: none;
+  flex-direction: column;
 }
 
 .awakeningSubMenu {
@@ -102,8 +102,13 @@
   justify-content: space-between;
 }
 
-
-
+.formationBars {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: none;
+}
 
 
 .slidecontainer {

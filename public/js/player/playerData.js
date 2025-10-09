@@ -26,7 +26,75 @@ export const playerData = {
 
     //Cultivation
     lockedElements: [],
-    unlockedElements: []
+    unlockedElements: [],
+
+    
+    elements: {
+        element1: {
+            magicDust: new Decimal(),
+            magicDustGain: new Decimal(),
+            stars: 7, //should be 0, 7 for testing
+            starCost: new Decimal(),
+            paths: 0,
+            pathCost: 7, //This probably should be in constants
+            maps: 0,
+            constellations: 0,
+            visions: 0, //may change to palace idk though
+            manifestations: 0
+        },
+
+        element2: {
+            magicDust: new Decimal(),
+            magicDustGain: new Decimal(),
+            stars: 0,
+            starCost: new Decimal(),
+            paths: 0,
+            pathCost: 7, //This probably should be in constants
+            maps: 0,
+            constellations: 0,
+            visions: 0, //may change to palace idk though
+            manifestations: 0
+        },
+
+        element3: {
+            magicDust: new Decimal(),
+            magicDustGain: new Decimal(),
+            stars: 0,
+            starCost: new Decimal(),
+            paths: 0,
+            pathCost: 7, //This probably should be in constants
+            maps: 0,
+            constellations: 0,
+            visions: 0, //may change to palace idk though
+            manifestations: 0
+        },
+
+        element4: {
+            magicDust: new Decimal(),
+            magicDustGain: new Decimal(),
+            stars: 0,
+            starCost: new Decimal(),
+            paths: 0,
+            pathCost: 7, //This probably should be in constants
+            maps: 0,
+            constellations: 0,
+            visions: 0, //may change to palace idk though
+            manifestations: 0
+        },
+
+        element5: {
+            magicDust: new Decimal(),
+            magicDustGain: new Decimal(),
+            stars: 0,
+            starCost: new Decimal(),
+            paths: 0,
+            pathCost: 7, //This probably should be in constants
+            maps: 0,
+            constellations: 0,
+            visions: 0, //may change to palace idk though
+            manifestations: 0
+        }
+    }
 }
 
 //returns entire playerData object
