@@ -1,4 +1,5 @@
 .verticalProgressContainer {
+    user-select: none;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -7,17 +8,20 @@
 }
 
 .progessContainer {
+    user-select: none;
     display: flex;
     flex-direction: row;
 }
 
 .progressBarVertical {
+    user-select: none;
     width: 6vw;
     height: 40vh;
     background-color: #eee;
 }
 
 .tierBarVertical {
+    user-select: none;
     width: 1vw;
     height: 40vh;
     margin-left: 1px;  
@@ -110,10 +114,34 @@
   margin: none;
 }
 
+.dustSliderContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
-.slidecontainer {
+.levelDisplay {
+  margin-bottom: 1vh;
+}
+
+.convertDustDisplay {
+  width: 2vw;
+  margin-left: 1vw;
+}
+
+.slideBody {
   width: 100%;
 }
+
+.progressCenter {
+  width: 100%;
+  height: 100%;
+  background: conic-gradient(#000000 0deg, transparent 0deg);
+}
+
+
+
+
 
 .slider {
   -webkit-appearance: none;
@@ -121,9 +149,7 @@
   height: 25px;
   background: #d3d3d3;
   outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
+  opacity: 0.9;
 }
 
 .slider:hover {
@@ -135,13 +161,13 @@
   appearance: none;
   width: 25px;
   height: 25px;
-  background: rgb(13, 80, 204);
+  background: rgb(255, 255, 255);
   cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
-  background: #04AA6D;
+  background: #ffffff;
   cursor: pointer;
 }

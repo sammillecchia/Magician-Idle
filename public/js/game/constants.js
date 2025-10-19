@@ -32,7 +32,74 @@ export const initialGameState = {
     awakeningLength: 1000, //ms placeholder
     awakeningUnlocked: false,
     awakeningRunning: false,
-    awakeningStart: null  
+    awakeningStart: null,
+
+    element1: {
+        gatherUnlocked: false,
+        gatherRunning: false,
+        gatherStart: null,
+        gatherOn: false,
+        starRunning: false,
+        pathRunning: false,
+        mapRunning: false,
+        constellationRunning: false,
+        visionRunning: false,
+        manifestationRunning: false
+
+    },
+
+    element2: {
+        gatherUnlocked: false,
+        gatherRunning: false,
+        gatherStart: null,
+        gatherOn: false,
+        starRunning: false,
+        pathRunning: false,
+        mapRunning: false,
+        constellationRunning: false,
+        visionRunning: false,
+        manifestationRunning: false
+
+    },
+    element3: {
+        gatherUnlocked: false,
+        gatherRunning: false,
+        gatherStart: null,
+        gatherOn: false,
+        starRunning: false,
+        pathRunning: false,
+        mapRunning: false,
+        constellationRunning: false,
+        visionRunning: false,
+        manifestationRunning: false
+
+    },
+    element4: {
+        gatherUnlocked: false,
+        gatherRunning: false,
+        gatherStart: null,
+        gatherOn: false,
+        starRunning: false,
+        pathRunning: false,
+        mapRunning: false,
+        constellationRunning: false,
+        visionRunning: false,
+        manifestationRunning: false
+
+    },
+    element5: {
+        gatherUnlocked: false,
+        gatherRunning: false,
+        gatherStart: null,
+        gatherOn: false,
+        starRunning: false,
+        pathRunning: false,
+        mapRunning: false,
+        constellationRunning: false,
+        visionRunning: false,
+        manifestationRunning: false
+
+    }
 }
 
 export const initialPlayerData = {
@@ -67,6 +134,7 @@ export const initialPlayerData = {
         element1: {
             magicDust: new Decimal(),
             magicDustGain: new Decimal(),
+            gatherLength: 1000,
             stars: 7,
             starCost: new Decimal(),
             paths: 0,
@@ -80,6 +148,7 @@ export const initialPlayerData = {
         element2: {
             magicDust: new Decimal(),
             magicDustGain: new Decimal(),
+            gatherLength: 1000,
             stars: 7,
             starCost: new Decimal(),
             paths: 0,
@@ -93,6 +162,7 @@ export const initialPlayerData = {
         element3: {
             magicDust: new Decimal(),
             magicDustGain: new Decimal(),
+            gatherLength: 1000,
             stars: 7,
             starCost: new Decimal(),
             paths: 0,
@@ -106,6 +176,7 @@ export const initialPlayerData = {
         element4: {
             magicDust: new Decimal(),
             magicDustGain: new Decimal(),
+            gatherLength: 1000,
             stars: 7,
             starCost: new Decimal(),
             paths: 0,
@@ -119,6 +190,7 @@ export const initialPlayerData = {
         element5: {
             magicDust: new Decimal(),
             magicDustGain: new Decimal(),
+            gatherLength: 1000,
             stars: 7,
             starCost: new Decimal(),
             paths: 0,

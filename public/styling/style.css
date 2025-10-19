@@ -151,8 +151,8 @@ div {
 }
 
 .awakeningProgress {
-  height: 400px;
-  width: 400px;
+  height: 40vh;
+  width: 40vh;
   background-color: #ddd; /* Lighter background color */
   /* border-radius: 50%; */
   display: flex;

@@ -33,7 +33,8 @@ export const playerData = {
         element1: {
             magicDust: new Decimal(),
             magicDustGain: new Decimal(),
-            stars: 7, //should be 0, 7 for testing
+            gatherLength: 5000,
+            stars: 7,
             starCost: new Decimal(),
             paths: 0,
             pathCost: 7, //This probably should be in constants
@@ -46,7 +47,8 @@ export const playerData = {
         element2: {
             magicDust: new Decimal(),
             magicDustGain: new Decimal(),
-            stars: 0,
+            gatherLength: 1000,
+            stars: 7,
             starCost: new Decimal(),
             paths: 0,
             pathCost: 7, //This probably should be in constants
@@ -59,7 +61,8 @@ export const playerData = {
         element3: {
             magicDust: new Decimal(),
             magicDustGain: new Decimal(),
-            stars: 0,
+            gatherLength: 1000,
+            stars: 7,
             starCost: new Decimal(),
             paths: 0,
             pathCost: 7, //This probably should be in constants
@@ -72,7 +75,8 @@ export const playerData = {
         element4: {
             magicDust: new Decimal(),
             magicDustGain: new Decimal(),
-            stars: 0,
+            gatherLength: 1000,
+            stars: 7,
             starCost: new Decimal(),
             paths: 0,
             pathCost: 7, //This probably should be in constants
@@ -85,7 +89,8 @@ export const playerData = {
         element5: {
             magicDust: new Decimal(),
             magicDustGain: new Decimal(),
-            stars: 0,
+            gatherLength: 1000,
+            stars: 7,
             starCost: new Decimal(),
             paths: 0,
             pathCost: 7, //This probably should be in constants
@@ -102,17 +107,6 @@ export function getPlayerData() {
     return { ...playerData};
 }
 
-//sets player data object, used for loading data
-export function setPlayerData(loadedData) {
-    if (loadedData) {
-        if (loadedData.magicPower) {
-            playerData.magicPower = new Decimal(loadedData.magicPower);
-        }
-        if (loadedData.level) {
-            playerData.level = loadedData.level;
-        }
-    }
-}
 
 
 //gets players magic power
@@ -202,10 +196,32 @@ export function incrementMultiplyCost() {
 }
 
 
-//TBA
-// export let starDust = 0
-// export let stars = 0
-// export let starPaths = 0
-// export let starMaps = 0
-// export let starConstellations = 0
-// export let starPalaces = 0
+export function calculateMagicDustGain(element, percent) {
+    element.MagicDustGain
+}
+
+//There is probably a better way to do this
+//this function returns a value according to the highest unlocked tier + the amount owned of that tier
+export function calculateMagicRank(element) {
+    if (element.manifestations > 0) {
+        return ("6" + element.manifestations)
+    } 
+    else if (element.visions > 0) {
+        return ("5" + element.visions)
+    } 
+    else if (element.constellations > 0) {
+        return ("4" + element.constellations)
+    } 
+    else if (element.maps > 0) { 
+        return ("3" + element.maps)    
+    } 
+    else if (element.paths > 0) {
+        return ("2" + element.paths)
+    } 
+    else if (element.stars > 0) {
+        return ("1" + element.stars)
+    } 
+    else {
+        return ("no rank");
+    }
+}

@@ -20,7 +20,11 @@ export function updateProgressCircle(progress, circle) {
   }
 }
 
-
+export function updateDustSquare(progress, square, color) {
+  const angle = progress * 3.6;
+  //let color = `#AAAAFF`
+  square.style.background = `conic-gradient(${color} ${angle}deg, transparent ${angle}deg)`;
+}
 
 
 

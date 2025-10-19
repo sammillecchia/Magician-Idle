@@ -2,7 +2,7 @@
 import * as playerData from "../player/playerData.js";
 import { menus } from "../game/menus.js";
 import { gameState } from "../game/game.js"
-import { updateProgressCircle } from "../utils/progressbar.js";
+import { updateProgressCircle, updateDustSquare } from "../utils/progressbar.js";
 import { cultivationConstants } from "../game/constants.js";
 import { setCultivationSubMenu, changeCultivationSubMenu } from "../ui/events.js";
 import { saveGame } from "../game/saveload.js";
@@ -66,6 +66,8 @@ export function generateSubmenus() {
     playerData.playerData.unlockedElements.forEach(element => {
         i++;
 
+        const elementValue = `element`;
+
         //create a button for each element
         //console.log(`Generating Button for ${element} number ${i}`);
         const elementButton = document.createElement('div');
@@ -84,7 +86,7 @@ export function generateSubmenus() {
         elementDisplay.id = `element${i}Display`;
 
         //elementDisplay.textContent = `${element}`;
-        elementDisplay.style.backgroundColor =  elements.elementColors[element];
+        //elementDisplay.style.backgroundColor =  elements.elementColors[element];
         elementDisplay.style.display = 'none';
 
         
@@ -125,36 +127,64 @@ export function generateSubmenus() {
         //TTTTTOOOOOOOOOODOOOOOOOOOOOOOO
             //NEEDS TO BE DUSTPROGRESS CLASS/ID NOT AWAKENING
         //Creates dust progress square
+        
+        const elementNameDisplay = document.createElement('div');
+        elementNameDisplay.textContent = `${element}`;
+        elementNameDisplay.style.color = elements.elementColors[element];
+
+        const dustDisplay = document.createElement('div');
+        dustDisplay.textContent = "Dust: PLACEHOLDER";
+        dustDisplay.style.color = elements.elementColors[element];
+
         const dustProgress = document.createElement('div');
         dustProgress.className = "awakeningProgress";
         
         const dustProgressCenter = document.createElement('div');
-        dustProgressCenter.id = `${element}ProgressCenter`;
+        dustProgressCenter.className = "progressCenter";
+        dustProgressCenter.id = `progressCenter${i}`;
 
         dustProgress.appendChild(dustProgressCenter);
 
+        //Creates div for slider and display
+        const dustSliderContainer = document.createElement('div');
+        dustSliderContainer.className = "dustSliderContainer";
+        dustSliderContainer.id = `${element}dustSliderContainer`
+
         //Creates dust percentage slider
         const dustSlider = document.createElement('div');
-        dustSlider.id = "slideContainer";
+        dustSlider.id = "slideBody";
 
             //SLIDER AND MYRANGE ALSO NEED TO BE REFACTORED
         
         const dustInput = document.createElement('input');
         dustInput.type = "range";
-        dustInput.min = "1";
+        dustInput.min = "0";
+        dustInput.value = "0";
         dustInput.max = "100";
         dustInput.className = "slider"
-        dustInput.id = "myRange"
+        dustInput.id = `${element}dustSlider`
+        dustInput.oninput = (event) => {
+            const gatherValue = event.target.value;
+            updateGatherSlider(number, gatherValue);
+        } 
+        
+        //creates dustDisplay
+        const convertDustDisplay = document.createElement('div');
+        convertDustDisplay.className = "convertDustDisplay";
+        convertDustDisplay.id = `convertDustDisplay${i}`
+        convertDustDisplay.textContent = "0";
 
+        //appends elements for convertDustDisplay and slider together
         dustSlider.appendChild(dustInput);
+        dustSliderContainer.appendChild(dustSlider);
+        dustSliderContainer.appendChild(convertDustDisplay)
+
 
         //Creates gathermenu
         const gatherMenu = document.createElement('div');
         gatherMenu.className = "gatherMenu"
         gatherMenu.id = `gatherMenu${element}`;
 
-        gatherMenu.appendChild(dustProgress);
-        gatherMenu.appendChild(dustSlider);
 
         //Creates formationMenu
         const formationMenu = document.createElement('div');
@@ -166,8 +196,10 @@ export function generateSubmenus() {
         //Should be saved instead of set
         formationMenu.style.display = "none";
 
+        gatherMenu.appendChild(elementNameDisplay);
+        gatherMenu.appendChild(dustDisplay);
         gatherMenu.appendChild(dustProgress);
-        gatherMenu.appendChild(dustSlider);
+        gatherMenu.appendChild(dustSliderContainer);
 
         const gather = "gather";
         const formation = "formation";
@@ -195,6 +227,10 @@ export function generateSubmenus() {
             container.className = "verticalProgressContainer"
             container.id = `element${i}${tier}Container`
             
+            const levelDisplay = document.createElement('div');
+            levelDisplay.className = "levelDisplay";
+            levelDisplay.id = `${element}${tier}LevelDisplay`
+            levelDisplay.textContent = "0";
 
             const progressContainer = document.createElement('div');
             progressContainer.className = "progessContainer"
@@ -203,13 +239,20 @@ export function generateSubmenus() {
             const progressBar = document.createElement('div');
             progressBar.className = "progressBarVertical"
             progressBar.id = `${element}${tier}ProgressBarVertical`;
+
+            const tierBar = document.createElement('div');
+            tierBar.className = "tierBarVertical";
+            tierBar.id = `${element}${tier}TierBarVertical`
+
+            progressContainer.appendChild(progressBar);
+            progressContainer.appendChild(tierBar);
             
             const formationButton = document.createElement('div');
             formationButton.className = "verticalBarButton"
             formationButton.id = `${element}${tier}VerticalBarButton`;
             formationButton.textContent = `${elements.tierButtonLabels[j]}`
 
-            progressContainer.appendChild(progressBar);
+            container.appendChild(levelDisplay);
             container.appendChild(progressContainer);
             container.appendChild(formationButton);
 
@@ -289,8 +332,42 @@ function awakening() {
 
 }
 
+//function to handle changing the gathering slider
+export function updateGatherSlider(elementValue, gatherValue) {
+    //Grab the new data, how much MP used per gather
+    // console.log(gatherValue);
+    // console.log(elementValue);
+
+    const dustDisplay = document.getElementById(`convertDustDisplay${elementValue}`)
+    dustDisplay.textContent = `${gatherValue}`;
+    //Save this information to playerData
+    if (gatherValue > 0) {
+        //console.log(`gameState[element${elementValue}].gatherRunning`)
+        if (!gameState[`element${elementValue}`].gatherRunning) {
+            gameState[`element${elementValue}`].gatherRunning = true;
+            gameState[`element${elementValue}`].gatherStart = Date.now();
+        }
+    } else {
+        gameState[`element${elementValue}`].gatherRunning = false;
+        gameState[`element${elementValue}`].gatherOn = true;
+    }
+
+    //Possibly a call to updateDisplay
 
 
+}
+
+export function gather() {
+
+}
+
+export function gatherComplete(element) {
+    console.log(`Gather complete for: ${element}`)
+    gameState[`${element}`].gatherOn = false;
+}
+
+
+//Remove hardcoded value
 
 
 //Like updateProgressBars except for a circle :p
@@ -300,6 +377,49 @@ export function updateProgressCircles() {
         const awakeningProgress = Math.min(100, Math.round((Date.now() - gameState.awakeningStart) / (awakeningFinished - gameState.awakeningStart)* 100));
         updateProgressCircle(awakeningProgress, awakeningProgressCircle);
     }
+
+    // if (gameState.trainingRunning) {
+    //         let trainingFinished = gameState.trainingStart + gameState.trainingLength;
+    //         const trainingProgress = Math.min(100, Math.round((Date.now() - gameState.trainingStart) / (trainingFinished - gameState.trainingStart)* 100));
+    //         updateProgressBar(trainingProgress, trainingProgressBar);
+    // }
+
+    let i = 1;
+
+    while (i <= 5) {
+        if (gameState[`element${i}`].gatherRunning || gameState[`element${i}`].gatherOn) {
+            let gatherFinished = gameState[`element${i}`].gatherStart + playerData.playerData.elements[`element${i}`].gatherLength;
+            const gatherProgress = Math.round((Date.now() - gameState[`element${i}`].gatherStart) / (gatherFinished - gameState[`element${i}`].gatherStart)* 1000) / 10;
+            const progressCenter = document.getElementById(`progressCenter${i}`);
+            const color = elements.elementColors[playerData.playerData.unlockedElements[(i - 1)]];
+            if (gatherProgress < 100) {
+                updateDustSquare(gatherProgress, progressCenter, color)
+            } else {
+                updateDustSquare(0, progressCenter, color)
+            }
+        }
+        i++;
+    }
+    
+
+    // if (gameState.element1.gatherRunning || gameState.element1.gatherOn) {
+    //     let gatherFinished = gameState.element1.gatherStart + playerData.playerData.elements.element1.gatherLength;
+    //     const gatherProgress = Math.round((Date.now() - gameState.element1.gatherStart) / (gatherFinished - gameState.element1.gatherStart)* 1000) / 10;
+    //     //console.log("updated");
+    //     const progressCenter = document.getElementById(`progressCenter1`);
+    //     const color = elements.elementColors[playerData.playerData.unlockedElements[0]];
+    //     if (gatherProgress < 100) {
+    //         updateDustSquare(gatherProgress, progressCenter, color)
+    //     } else {
+    //         updateDustSquare(0, progressCenter, color)
+    //     }
+    // }
+
+
+    
+    
+    
+    
 }
 
 //unlocks an element when awakening progress is finished
