@@ -6,6 +6,7 @@ import { updateText } from "../utils/updateText.js";
 import { setupMenuButtons } from "../ui/events.js";
 import { offlineSetup } from "./offlineProgress.js";
 import { setupCultivation } from "../modules/cultivation.js";
+import { makeDraggable } from "../utils/draggable.js";
 
 //this is dumb idk
 let lastUpdateTime = Date.now();
@@ -66,9 +67,11 @@ let e = gameState.multiplyLength;
 //sets event listeners, for one-time initalization logic
 //things were breaking when this was in main.js uuh maybe fix that idk
 export function startGame() {
+    
     training.setupEventListeners();
     cultivation.setupEventListeners();
     loadGame();
+    makeDraggable(document.getElementById('statsDisplay'));
     setupCultivation();
     setupMenuButtons();
     requestAnimationFrame(gameLoop);

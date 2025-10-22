@@ -52,6 +52,16 @@ export function loadGame() {
         playerData.duplicateCost = new Decimal(loadedPlayerData.duplicateCost)
         playerData.multiplyCost = new Decimal(loadedPlayerData.multiplyCost)
 
+        let i = 1;
+        while (i <= 5) {
+            const elementKey = `element${i}`;
+            const loadedElement = loadedPlayerData.elements[elementKey];
+            playerData.elements[`element${i}`].magicDust = new Decimal(loadedElement.magicDust);
+            playerData.elements[`element${i}`].magicDustGain = new Decimal(loadedElement.magicDustGain);
+            playerData.elements[`element${i}`].starCost = new Decimal(loadedElement.starCost);
+            i++;
+        }
+
     }
 
     calculateOffline();

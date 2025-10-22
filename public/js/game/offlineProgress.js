@@ -3,19 +3,27 @@ import { saveGame } from "./saveload.js";
 import { increaseMagicPower, playerData } from "../player/playerData.js";
 import { createModal } from "../ui/modal.js";
 
-//todo add call to calculateOffline() from domContentLoaded
+let debounceTimeout;
+
+
+
+
 export function offlineSetup() {
     
     document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') {
-        console.log('visible')
-        calculateOffline(); 
-    } else {
-        console.log('hidden')
-        gameState.lastTimePlayed = Date.now();
-        saveGame();  
-    }
 
+    clearTimeout(debounceTimeout);
+
+    debounceTimeout = setTimeout(() => {
+        if (document.visibilityState === 'visible') {
+            console.log('visible')
+            calculateOffline(); 
+        } else {
+            console.log('hidden')
+            gameState.lastTimePlayed = Date.now();
+            saveGame();  
+        }
+    }, 50);    
     });
 
     window.addEventListener('pagehide', () => {
@@ -28,13 +36,14 @@ export function offlineSetup() {
 
 //todo add call to calculateOffline() from domContentLoaded
 export function calculateOffline() {
-
     if (isNaN(gameState.lastTimePlayed)) {
         console.error("lastTimePlayed is NaN");
         return;
     }
 
     let timeElapsed = Date.now() - parseInt(gameState.lastTimePlayed, 10);
+    gameState.lastTimePlayed = Date.now();
+    saveGame();
     console.log(timeElapsed);
     let secondsElapsed = Math.floor(timeElapsed / 1000);
     let offlineMP = new Decimal();
@@ -77,6 +86,6 @@ export function calculateOffline() {
     }
 
 
-    
+    saveGame();
     console.log(`time elapsed ${secondsElapsed}s`);
 }

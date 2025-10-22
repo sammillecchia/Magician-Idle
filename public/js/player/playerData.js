@@ -33,6 +33,7 @@ export const playerData = {
         element1: {
             magicDust: new Decimal(),
             magicDustGain: new Decimal(),
+            gatherValue: 0,
             gatherLength: 5000,
             stars: 7,
             starCost: new Decimal(),
@@ -47,6 +48,7 @@ export const playerData = {
         element2: {
             magicDust: new Decimal(),
             magicDustGain: new Decimal(),
+            gatherValue: 0,
             gatherLength: 1000,
             stars: 7,
             starCost: new Decimal(),
@@ -75,6 +77,7 @@ export const playerData = {
         element4: {
             magicDust: new Decimal(),
             magicDustGain: new Decimal(),
+            gatherValue: 0,
             gatherLength: 1000,
             stars: 7,
             starCost: new Decimal(),
@@ -89,6 +92,7 @@ export const playerData = {
         element5: {
             magicDust: new Decimal(),
             magicDustGain: new Decimal(),
+            gatherValue: 0, //0 to 100
             gatherLength: 1000,
             stars: 7,
             starCost: new Decimal(),
@@ -101,6 +105,21 @@ export const playerData = {
         }
     }
 }
+
+
+
+export function increaseDust(element) {
+    calculateMagicDustGain(element);
+    playerData.elements[`${element}`].magicDust = playerData.elements[`${element}`].magicDust.plus(playerData.elements[`${element}`].magicDustGain);
+    console.log(`New dust for ${element}: ${playerData.elements[`${element}`].magicDust}`)
+}
+
+export function calculateMagicDustGain(element) {
+    playerData.elements[`${element}`].magicDustGain = new Decimal(
+        playerData.elements[`${element}`].stars * 100
+    );
+}
+
 
 //returns entire playerData object
 export function getPlayerData() {
@@ -196,9 +215,7 @@ export function incrementMultiplyCost() {
 }
 
 
-export function calculateMagicDustGain(element, percent) {
-    element.MagicDustGain
-}
+
 
 //There is probably a better way to do this
 //this function returns a value according to the highest unlocked tier + the amount owned of that tier

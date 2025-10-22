@@ -133,6 +133,7 @@ export function generateSubmenus() {
         elementNameDisplay.style.color = elements.elementColors[element];
 
         const dustDisplay = document.createElement('div');
+        dustDisplay.id = `${number}DustDisplay`
         dustDisplay.textContent = "Dust: PLACEHOLDER";
         dustDisplay.style.color = elements.elementColors[element];
 
@@ -167,6 +168,9 @@ export function generateSubmenus() {
             const gatherValue = event.target.value;
             updateGatherSlider(number, gatherValue);
         } 
+
+
+        
         
         //creates dustDisplay
         const convertDustDisplay = document.createElement('div');
@@ -265,7 +269,14 @@ export function generateSubmenus() {
 
         cultivationSubMenu.appendChild(elementDisplay)
 
+        let test = playerData.playerData.elements[`element${number}`].gatherValue
 
+        if (test) {
+            dustInput.value = playerData.playerData.elements[`element${number}`].gatherValue;
+            updateGatherSlider(number, playerData.playerData.elements[`element${number}`].gatherValue);
+        } else {
+            updateGatherSlider(number, 0);
+        }
         
     })
 
@@ -341,11 +352,16 @@ export function updateGatherSlider(elementValue, gatherValue) {
     const dustDisplay = document.getElementById(`convertDustDisplay${elementValue}`)
     dustDisplay.textContent = `${gatherValue}`;
     //Save this information to playerData
+    playerData.playerData.elements[`element${elementValue}`].gatherValue = gatherValue;
     if (gatherValue > 0) {
         //console.log(`gameState[element${elementValue}].gatherRunning`)
         if (!gameState[`element${elementValue}`].gatherRunning) {
-            gameState[`element${elementValue}`].gatherRunning = true;
-            gameState[`element${elementValue}`].gatherStart = Date.now();
+            //calculateMagicDustGain(`element${elementValue}`);
+            //if (playerData.playerData.elements[`element${elementValue}`].magicDustGain.gte(playerData.playerData.magicPower)) {
+                gameState[`element${elementValue}`].gatherRunning = true;
+                gameState[`element${elementValue}`].gatherStart = Date.now();
+            //}
+            
         }
     } else {
         gameState[`element${elementValue}`].gatherRunning = false;
@@ -362,8 +378,10 @@ export function gather() {
 }
 
 export function gatherComplete(element) {
-    console.log(`Gather complete for: ${element}`)
+    //console.log(`Gather complete for: ${element}`)
+    playerData.increaseDust(element);
     gameState[`${element}`].gatherOn = false;
+
 }
 
 

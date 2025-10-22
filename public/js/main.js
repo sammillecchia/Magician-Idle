@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //On load
 function setup() {
+    console.log('loading');
     startGame();
 }
 
@@ -24,33 +25,9 @@ function setup() {
 
 
 
-//TODO: delete
-
-// makeDraggable(document.getElementById('statsDisplay'));
-
-
-// let currentMenu = trainingMenu
-
-// export function displayMenu(menu) {
-//     currentMenu.style.display = "none";
-//     menu.style.display = "flex";S
-//     currentMenu = menu;
-// }
-
-
-// const body = document.body;
 
 
 
-// let cultivationMenuUnlocked = 0;
-// function checkMilestones() {
-//     if (magicPower > 999) { //should  be higher
-//         if (cultivationMenuUnlocked == 0) {
-//             cultivationMenuButton.style.display = "grid";
-//         }
-//         cultivationMenuUnlocked = 1;
-//     }
-// }
 
 
 

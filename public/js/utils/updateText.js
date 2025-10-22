@@ -24,6 +24,19 @@ const multiplyLevelDisplay = document.getElementById('multiplyLevel')
 
 const awakenCostDisplay = document.getElementById('awakenCost');
 
+
+
+
+//Movable Display
+const MPDisplay = document.getElementById("mpDisplay");
+const RankDisplay = document.getElementById("rankDisplay");
+
+// const Element1DustDisplay = document.getElementById("Element1DustDisplay");
+// const Element2DustDisplay = document.getElementById("Element2DustDisplay");
+// const Element3DustDisplay = document.getElementById("Element3DustDisplay");
+// const Element4DustDisplay = document.getElementById("Element4DustDisplay");
+// const Element5DustDisplay = document.getElementById("Element5DustDisplay");
+
 //Updates all text with information, since this is called every gameLoop it needs checks
 //for whether the things being updated are actually visible
 export function updateText() {
@@ -53,6 +66,27 @@ export function updateText() {
             autoTrainButton.style.color = '#eee';
         }
     }
+
+    if (menus.currentMenu === menus.allMenus.cultivation) {
+        //console.log(playerData.playerData.unlockedElements.length);
+        let i = 1;
+        while (i <= playerData.playerData.unlockedElements.length) {
+            const dustDisplay = document.getElementById(`${i}DustDisplay`);
+            dustDisplay.textContent = `DUST: ${playerData.playerData.elements[`element${i}`].magicDust}`;
+            i++
+        }
+    }
+
+    MPDisplay.textContent = Math.floor(playerData.getMagicPower()); 
+    //RankDisplay   TBA
+
+    let i = 1;
+    while (i <= playerData.playerData.unlockedElements.length) {
+        const dustDisplay = document.getElementById(`Element${i}DustDisplay`);
+        dustDisplay.textContent = `${playerData.playerData.elements[`element${i}`].magicDust}`;
+        i++
+    }
+
 
    
 }
